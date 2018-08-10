@@ -3,6 +3,8 @@ import os
 from .credentials import *
 import ftputil
 import requests
+import json
+import time
 
 def invoke_workflow(base_url, parameters, login, password):
     username = login
@@ -113,7 +115,7 @@ def gnps_clustering(spectra: str)-> biom.Table:
     print(task_id)
 
     """Waiting For Job to Finish"""
-    wait_for_workflow_to_finish("gnps.ucsd.edu", task_id)
+    wait_for_workflow_finish("gnps.ucsd.edu", task_id)
 
     """Pulling down BioM"""
     url_to_biom = "http://gnps.ucsd.edu/ProteoSAFe/DownloadResultFile?task=%s&block=main&file=biom_output"

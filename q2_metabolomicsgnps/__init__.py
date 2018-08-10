@@ -1,5 +1,5 @@
 
-from .method import gnps_clustering
+from ._method import gnps_clustering
 
 
 

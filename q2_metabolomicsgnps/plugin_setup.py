@@ -14,14 +14,14 @@ plugin = Plugin(
 plugin.methods.register_function(
     function=q2_metabolomicsgnps.gnps_clustering,
     inputs={},
-    parameters={'spectra': qiime2.plugin.Str},
+    parameters={'manifest': qiime2.plugin.Str},
     input_descriptions={},
     outputs=[('feature_table', FeatureTable[Frequency])],
     parameter_descriptions={
-        'spectra': 'Lorem Ipsum.'
+        'manifest': 'Manifest file for describing information about each file. Headers of sample name and path to file'
     },
-    output_descriptions={'feature_table': 'The resulting distance matrix.'},
+    output_descriptions={'feature_table': 'Resulting feature table'},
     name='GNPS Metabolomics BioM Creation',
-    description=("Computes stuff for metabolomics"),
+    description=("Computes feature biom for metabolomics using GNPS"),
     citations=[]
 )

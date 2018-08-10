@@ -5,6 +5,8 @@ import ftputil
 import requests
 import json
 import time
+import csv
+import uuid
 
 def invoke_workflow(base_url, parameters, login, password):
     username = login
@@ -60,7 +62,7 @@ def launch_GNPS_workflow(ftp_path, job_description, username, password, email):
     invokeParameters["protocol"] = "None"
     invokeParameters["desc"] = job_description
     invokeParameters["library_on_server"] = "d.speclibs;"
-    invokeParameters["spec_on_server"] = "d." + ftp_path + "/G1;"
+    invokeParameters["spec_on_server"] = "d." + ftp_path + ";"
     invokeParameters["tolerance.PM_tolerance"] = "2.0"
     invokeParameters["tolerance.Ion_tolerance"] = "0.5"
     invokeParameters["PAIRS_MIN_COSINE"] = "0.70"
@@ -104,24 +106,40 @@ def wait_for_workflow_finish(base_url, task_id):
     return json_obj["status"]
 
 #def gnps_clustering(spectra: str)->  biom.Table:
-def gnps_clustering(spectra: str)-> biom.Table:
-    input_files = spectra.split()
-    print(input_files)
-    for input_filename in input_files:
-        upload_to_gnps(input_filename, "TESTQIIME", "G1")
-    
+def gnps_clustering(manifest: str)-> biom.Table:
+    all_rows = []
+    sid_map = {}
+    with open(manifest) as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            all_rows.append(row)
+            sid = row["sampleid"]
+            filepath = row["filepath"]
+            fileidentifier = os.path.basename(os.path.splitext(filepath)[0])
+            sid_map[fileidentifier] = sid
+
+    remote_folder = str(uuid.uuid4())
+
+    for row in all_rows:
+        upload_to_gnps(row["filepath"], "Qiime2", remote_folder)
+
     """Launching GNPS Job"""
-    task_id = launch_GNPS_workflow(os.path.join("quickstart_GNPS", "TESTQIIME"), "TEST", USERNAME, PASSWORD, "mwang87@gmail.com") 
-    print(task_id)
+    task_id = launch_GNPS_workflow(os.path.join("quickstart_GNPS", "Qiime2", remote_folder), "Qiime2 Analysis %s" % (remote_folder), USERNAME, PASSWORD, "nobody@ucsd.edu")
 
     """Waiting For Job to Finish"""
     wait_for_workflow_finish("gnps.ucsd.edu", task_id)
 
     """Pulling down BioM"""
-    url_to_biom = "http://gnps.ucsd.edu/ProteoSAFe/DownloadResultFile?task=%s&block=main&file=biom_output"
-    local_filepath = "temp.biom"
+    #task_id = "4ae62800220148f3a664df28ff2dea1d"
+    url_to_biom = "http://gnps.ucsd.edu/ProteoSAFe/DownloadResultFile?task=%s&block=main&file=cluster_buckets/" % (task_id)
+    local_filepath = "temp.tsv"
     local_file = open(local_filepath, "w")
     local_file.write(requests.get(url_to_biom).text)
     local_file.close()
 
+    with open(local_filepath) as fh:
+        table = biom.Table.from_tsv(fh, None, None, None)
 
+    table.update_ids(sid_map, axis='sample', inplace=True)
+
+    return table

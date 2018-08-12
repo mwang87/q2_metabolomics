@@ -1,7 +1,7 @@
 import biom
 import os
 import ftputil
-import tempfile
+from tempfile import NamedTemporaryFile
 import requests
 import json
 import time

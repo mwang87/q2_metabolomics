@@ -5,12 +5,12 @@ import csv
 
 from qiime2.plugin.testing import TestPluginBase
 
-from q2_metabolomicsgnps._methods import _create_table_from_task
+from q2_metabolomicsgnps._method import _create_table_from_task
 
 class MetabolomicsGNPSTests(unittest.TestCase):
 
-    def test_gnps(self):
-        gnps_clustering("manifest.tsv", "qiime2test", "qiime2test")
+    #def test_gnps(self):
+    #    gnps_clustering("manifest.tsv", "qiime2test", "qiime2test")
 
     def test_featureloading(self):
         manifest = "manifest.tsv"

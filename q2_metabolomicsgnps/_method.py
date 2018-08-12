@@ -31,10 +31,10 @@ def invoke_workflow(base_url, parameters, login, password):
     else:
         return None
 
-def upload_to_gnps(input_filename, folder_for_spectra, group_name):
+def upload_to_gnps(input_filename, folder_for_spectra, group_name, username, password):
     url = "ccms-ftp01.ucsd.edu"
 
-    with ftputil.FTPHost(url, USERNAME, PASSWORD) as ftp_host:
+    with ftputil.FTPHost(url, username, password) as ftp_host:
         names = ftp_host.listdir(ftp_host.curdir)
         try:
             if not folder_for_spectra in names:
@@ -118,7 +118,7 @@ def gnps_clustering(manifest: str, username: str, password: str)-> biom.Table:
     remote_folder = str(uuid.uuid4())
 
     for row in all_rows:
-        upload_to_gnps(row["filepath"], "Qiime2", remote_folder)
+        upload_to_gnps(row["filepath"], "Qiime2", remote_folder, username, password)
 
     """Launching GNPS Job"""
     task_id = launch_GNPS_workflow(os.path.join("quickstart_GNPS", "Qiime2", remote_folder), "Qiime2 Analysis %s" % (remote_folder), username, password, "nobody@ucsd.edu")

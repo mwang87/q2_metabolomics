@@ -121,11 +121,10 @@ def gnps_clustering(manifest: str, username: str, password: str)-> biom.Table:
         upload_to_gnps(row["filepath"], "Qiime2", remote_folder, username, password)
 
     """Launching GNPS Job"""
-    task_id = launch_GNPS_workflow(os.path.join("quickstart_GNPS", "Qiime2", remote_folder), "Qiime2 Analysis %s" % (remote_folder), username, password, "nobody@ucsd.edu")
+    task_id = launch_GNPS_workflow(os.path.join(username, "Qiime2", remote_folder), "Qiime2 Analysis %s" % (remote_folder), username, password, "nobody@ucsd.edu")
 
     if task_id == None:
-        print("Error, task creation failed at GNPS")
-        exit(1)
+        sys.exit("Error, task creation failed at GNPS")
 
     """Waiting For Job to Finish"""
     wait_for_workflow_finish("gnps.ucsd.edu", task_id)

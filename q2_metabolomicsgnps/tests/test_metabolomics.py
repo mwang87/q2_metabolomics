@@ -5,6 +5,7 @@ import csv
 
 
 from q2_metabolomicsgnps._method import _create_table_from_task
+from q2_metabolomicsgnps import gnps_clustering
 
 class MetabolomicsTestCase(unittest.TestCase):
 

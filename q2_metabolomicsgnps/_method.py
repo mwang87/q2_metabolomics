@@ -141,7 +141,7 @@ def _create_table_from_task(task_id, sid_map):
     local_file.write(requests.get(url_to_biom).text)
     local_file.close()
 
-    with open(local_filepath) as fh:
+    with open(f.name) as fh:
         table = biom.Table.from_tsv(fh, None, None, None)
 
     table.update_ids(sid_map, axis='sample', inplace=True)

@@ -3,13 +3,14 @@ import io
 import os
 import csv
 
-from qiime2.plugin.testing import TestPluginBase
 
 from q2_metabolomicsgnps._method import _create_table_from_task
 
-class MetabolomicsGNPSTests(unittest.TestCase):
+class MetabolomicsTestCase(unittest.TestCase):
+
+
     def test_featureloading(self):
-        manifest = "manifest.tsv"
+        manifest = "data/manifest.tsv"
         sid_map = {}
         with open(manifest) as csvfile:
             reader = csv.DictReader(csvfile)
@@ -24,4 +25,9 @@ class MetabolomicsGNPSTests(unittest.TestCase):
         _create_table_from_task(task_id, sid_map)
 
     def test_gnps(self):
-        gnps_clustering("manifest.tsv", "qiime2test", "qiime2test")
+        gnps_clustering("data/manifest.tsv", "qiime2test", "qiime2test")
+
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -100,7 +100,7 @@ def wait_for_workflow_finish(base_url, task_id):
         except:
             print("Exception In Wait")
             time.sleep(1)
-PASSWORD
+
     return json_obj["status"]
 
 def gnps_clustering(manifest: str, username: str, password: str)-> biom.Table:

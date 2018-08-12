@@ -14,7 +14,7 @@ plugin = Plugin(
 plugin.methods.register_function(
     function=q2_metabolomicsgnps.gnps_clustering,
     inputs={},
-    parameters={'manifest': qiime2.plugin.Str},
+    parameters={'manifest': qiime2.plugin.Str, 'username': qiime2.plugin.Str, 'password': qiime2.plugin.Str},
     input_descriptions={},
     outputs=[('feature_table', FeatureTable[Frequency])],
     parameter_descriptions={

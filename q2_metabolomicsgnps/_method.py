@@ -1,7 +1,7 @@
 import biom
 import os
-from .credentials import *
 import ftputil
+import tempfile
 import requests
 import json
 import time
@@ -27,10 +27,8 @@ def invoke_workflow(base_url, parameters, login, password):
     print(r.text)
 
     if len(task_id) > 4 and len(task_id) < 60:
-        print("Launched Task: : " + r.text)
         return task_id
     else:
-        print(task_id)
         return None
 
 def upload_to_gnps(input_filename, folder_for_spectra, group_name):
@@ -102,18 +100,17 @@ def wait_for_workflow_finish(base_url, task_id):
         except:
             print("Exception In Wait")
             time.sleep(1)
-
+PASSWORD
     return json_obj["status"]
 
-#def gnps_clustering(spectra: str)->  biom.Table:
-def gnps_clustering(manifest: str)-> biom.Table:
+def gnps_clustering(manifest: str, username: str, password: str)-> biom.Table:
     all_rows = []
     sid_map = {}
     with open(manifest) as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             all_rows.append(row)
-            sid = row["sampleid"]
+            sid = row["sample-id"]
             filepath = row["filepath"]
             fileidentifier = os.path.basename(os.path.splitext(filepath)[0])
             sid_map[fileidentifier] = sid
@@ -124,16 +121,24 @@ def gnps_clustering(manifest: str)-> biom.Table:
         upload_to_gnps(row["filepath"], "Qiime2", remote_folder)
 
     """Launching GNPS Job"""
-    task_id = launch_GNPS_workflow(os.path.join("quickstart_GNPS", "Qiime2", remote_folder), "Qiime2 Analysis %s" % (remote_folder), USERNAME, PASSWORD, "nobody@ucsd.edu")
+    task_id = launch_GNPS_workflow(os.path.join("quickstart_GNPS", "Qiime2", remote_folder), "Qiime2 Analysis %s" % (remote_folder), username, password, "nobody@ucsd.edu")
+
+    if task_id == None:
+        print("Error, task creation failed at GNPS")
+        exit(1)
 
     """Waiting For Job to Finish"""
     wait_for_workflow_finish("gnps.ucsd.edu", task_id)
 
+    return _create_table_from_task(task_id, sid_map)
+
+def _create_table_from_task(task_id, sid_map):
     """Pulling down BioM"""
     #task_id = "4ae62800220148f3a664df28ff2dea1d"
     url_to_biom = "http://gnps.ucsd.edu/ProteoSAFe/DownloadResultFile?task=%s&block=main&file=cluster_buckets/" % (task_id)
-    local_filepath = "temp.tsv"
-    local_file = open(local_filepath, "w")
+    f = NamedTemporaryFile(delete=False)
+    f.close()
+    local_file = open(f.name, "w")
     local_file.write(requests.get(url_to_biom).text)
     local_file.close()
 
@@ -141,5 +146,8 @@ def gnps_clustering(manifest: str)-> biom.Table:
         table = biom.Table.from_tsv(fh, None, None, None)
 
     table.update_ids(sid_map, axis='sample', inplace=True)
+
+    #Cleanup Tempfile
+    os.unlink(f.name)
 
     return table

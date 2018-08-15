@@ -7,6 +7,7 @@ import json
 import time
 import csv
 import uuid
+import pandas as pd
 
 def invoke_workflow(base_url, parameters, login, password):
     username = login
@@ -133,7 +134,6 @@ def gnps_clustering(manifest: str, username: str, password: str)-> biom.Table:
 
 def _create_table_from_task(task_id, sid_map):
     """Pulling down BioM"""
-    #task_id = "4ae62800220148f3a664df28ff2dea1d"
     url_to_biom = "http://gnps.ucsd.edu/ProteoSAFe/DownloadResultFile?task=%s&block=main&file=cluster_buckets/" % (task_id)
     f = NamedTemporaryFile(delete=False)
     f.close()
@@ -147,6 +147,58 @@ def _create_table_from_task(task_id, sid_map):
     table.update_ids(sid_map, axis='sample', inplace=True)
 
     #Cleanup Tempfile
+    os.unlink(f.name)
+
+    return table
+
+
+def mzmine2_clustering(manifest: str, quantificationtable: str)-> biom.Table:
+    """Loading Manifest Mapping"""
+    sid_mapping = {}
+    with open(manifest) as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            sid = row["sample-id"]
+            filepath = row["filepath"]
+            sid_mapping[os.path.basename(filepath)] = sid
+
+    output_list = []
+    with open(quantificationtable) as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            feature_id = row["row ID"]
+            feature_mz = row["row m/z"]
+            feature_rt = row["row retention time"]
+
+            print(feature_id)
+
+            output_dict = {}
+            output_dict["#OTU ID"] = feature_id
+
+            for header in row:
+                if header.find("Peak area") != -1:
+                    filepath = os.path.basename(header.split(" ")[0])
+                    sid = sid_mapping[filepath]
+                    output_dict[sid] = row[header]
+
+            output_list.append(output_dict)
+
+    f = NamedTemporaryFile(delete=False)
+    f.close()
+    with open(f.name, "w") as csvfile:
+        fieldnames = list(output_list[0].keys())
+        fieldnames.remove("#OTU ID")
+        fieldnames.insert(0, "#OTU ID")
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames, delimiter="\t")
+        writer.writeheader()
+
+        for output_dict in output_list:
+            writer.writerow(output_dict)
+
+    """Reading Into"""
+    with open(f.name) as fh:
+        table = biom.Table.from_tsv(fh, None, None, None)
+
     os.unlink(f.name)
 
     return table

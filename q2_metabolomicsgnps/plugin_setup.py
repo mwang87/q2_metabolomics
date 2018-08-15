@@ -8,6 +8,7 @@ plugin = Plugin(
     version=q2_metabolomicsgnps.__version__,
     website='https://gnps.ucsd.edu',
     user_support_text='https://gnps.ucsd.edu',
+    description='Plugin for the creation of a biom feature table for metabolomics data.',
     package='q2_metabolomicsgnps'
 )
 
@@ -18,11 +19,11 @@ plugin.methods.register_function(
     input_descriptions={},
     outputs=[('feature_table', FeatureTable[Frequency])],
     parameter_descriptions={
-        'manifest': 'Manifest file for describing information about each file. Headers of sample name and path to file'
+        'manifest': 'Manifest file for describing information about each file. Headers of sample-id and filepath'
     },
     output_descriptions={'feature_table': 'Resulting feature table'},
-    name='GNPS Metabolomics BioM Creation',
-    description=("Computes feature biom for metabolomics using GNPS"),
+    name='GNPS Metabolomics MS/MS Spectral Counts',
+    description=("Computes feature BioM for metabolomics using GNPS Molecular Networking"),
     citations=[]
 )
 
@@ -33,11 +34,11 @@ plugin.methods.register_function(
     input_descriptions={},
     outputs=[('feature_table', FeatureTable[Frequency])],
     parameter_descriptions={
-        'manifest': 'Manifest file for describing information about each file. Headers of sample name and path to file',
+        'manifest': 'Manifest file for describing information about each file. Headers of sample-id and filepath',
         'quantificationtable': 'Quantification Table output from MZMine2'
     },
     output_descriptions={'feature_table': 'Resulting feature table'},
-    name='GNPS MZMine2 Quantitification Metabolomics BioM Creation',
-    description=("Computes feature biom for metabolomics using MZMine2 and GNPS"),
+    name='GNPS Metabolomics MZMine2 Quantitification',
+    description=("Computes feature biom for metabolomics using MZMine2 quantification output."),
     citations=[]
 )

@@ -132,6 +132,21 @@ def gnps_clustering(manifest: str, username: str, password: str)-> biom.Table:
 
     return _create_table_from_task(task_id, sid_map)
 
+def gnps_clustering_taskimport(manifest: str, taskid: str)-> biom.Table:
+    wait_for_workflow_finish("gnps.ucsd.edu", taskid)
+    sid_map = {}
+    with open(manifest) as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            sid = row["sample-id"]
+            filepath = row["filepath"]
+            fileidentifier = os.path.basename(os.path.splitext(filepath)[0])
+            sid_map[fileidentifier] = sid
+
+    return _create_table_from_task(taskid, sid_map)
+
+
+
 def _create_table_from_task(task_id, sid_map):
     """Pulling down BioM"""
     url_to_biom = "http://gnps.ucsd.edu/ProteoSAFe/DownloadResultFile?task=%s&block=main&file=cluster_buckets/" % (task_id)

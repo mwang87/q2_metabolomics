@@ -6,7 +6,7 @@ setup(
     packages=find_packages(),
     author="Mingxun Wang",
     author_email="mwang87@gmail.com",
-    description="Lorem Ipsum.",
+    description="This is a Qiime2 plugin that integrates with GNPS to create BioM tables for metabolomics data.",
     license='BSD-3-Clause',
     url="https://gnps.ucsd.edu",
     entry_points={

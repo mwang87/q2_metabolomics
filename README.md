@@ -2,6 +2,14 @@
 
 This is a QIIME 2 plugin to analyze metabolomics data that utilizes GNPS. 
 
+## MS2 Spectra Counts
+
+Lorem Ipsum
+
+## Feature Area Under the Curve
+
+Lorem Ipsum
+
 # Installation
 
 Lorem Ipsum

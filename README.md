@@ -16,7 +16,7 @@ Fundamentally, spectral abundance observed at at given time in a mass spectrum i
 
 ## Installation
 
-Install Qiime2 and activate environment by following the steps described [here] (https://docs.qiime2.org/2018.6/install/native/).
+Install Qiime2 and activate environment by following the steps described [here](https://docs.qiime2.org/2018.6/install/native/).
 
 Test if the Qiime2 installation was successful by typing the following command:
 

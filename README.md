@@ -25,6 +25,7 @@ Test if the Qiime2 installation was successful by typing the following command:
 If Qiime2 was successfully installed, options will appear.
 
 Then do the following command to clone the plugin scripts:
+
 `git clone https://github.com/mwang87/q2_metabolomicsgnps`
 
 Finally, change directory into the just newly q2_metabolomicsgnps folder and install plugin by executing the command:
@@ -41,13 +42,20 @@ If successful, the metabolomics-gnps plugin is now listed in the options.
 
 `qiime metabolomicsgnps` # Will list out all the commands
 
-`qiime metabolomicsgnps  gnps-clustering` # MS2 GNPS command
+`qiime metabolomicsgnps gnps-clustering` # MS2 GNPS Clustering Command. This function will take as input a set of mass spectrometry files (mzXML or mzML) and a manifest file to produce a biom qza file.
 
-`qiime metabolomicsgnps  mzmine2-clustering` # MZmine2 Feature Import Command
+`qiime metabolomicsgnps gnps-clustering-taskimport` # MS2 GNPS Clustering Command. This function will take as input an existing GNPS Molecular Networking task and a manifest file to produce a biom qza file.
+
+`qiime metabolomicsgnps mzmine2-clustering` # MZmine2 Feature Import Command. This function will take as input a feature quantification file from MZmine2 and a manifest file and produce a biom qza file.
+
 
 ### Example of job GNPS-clustering job:
 
-`qiime metabolomicsgnps gnps-clustering --p-manifest data/manifest.tsv --p-username seedworkshop --p-password seedworkshop --o-feature-table outputfolder`
+`qiime metabolomicsgnps gnps-clustering --p-manifest data/manifest.tsv --p-username <username> --p-password <password> --o-feature-table outputfolder`
+
+### Example of job GNPS-clustering-taskimport job:
+
+`qiime metabolomicsgnps gnps-clustering --p-manifest data/manifest.tsv --p-taskid cde9c128ec0c48a58e650279f1735dbc --o-feature-table outputfolder`
 
 ### Example of MZmine2-CLUSTERING job:
 

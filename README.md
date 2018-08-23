@@ -24,13 +24,19 @@ Test if the Qiime2 installation was successful by typing the following command:
 
 If Qiime2 was successfully installed, options will appear.
 
-Then do the following command to clone the plugin scripts:
+To install the q2_metabolomicsgnps plugin, you have two options
 
-`git clone https://github.com/mwang87/q2_metabolomicsgnps`
+```
+conda install -c mwang87 q2-metabolomicsgnps 
+```
 
-Finally, change directory into the just newly q2_metabolomicsgnps folder and install plugin by executing the command:
+or 
 
-`pip install -e .`
+```
+git clone https://github.com/mwang87/q2_metabolomicsgnps
+cd q2_metabolomicsgnps
+pip install -e .
+```
 
 Test if the plugin was installed correctly by repeating the following command:
 

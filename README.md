@@ -33,7 +33,7 @@ If successful, the metabolomicsgnps plugin is now listed in the options.
 
 `qiime metabolomicsgnps` # Will list out all the commands
 
-`qiime metabolomicsgnps`  gnps-clustering` # MS2 GNPS command
+`qiime metabolomicsgnps  gnps-clustering` # MS2 GNPS command
 
 `qiime metabolomicsgnps  mzmine2-clustering` # MZmine2 Feature Import Command
 

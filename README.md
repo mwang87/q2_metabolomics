@@ -20,7 +20,9 @@ Install Qiime2 and activate environment by following the steps described [here](
 
 Test if the Qiime2 installation was successful by typing the following command:
 
-`qiime`
+```
+qiime
+```
 
 If Qiime2 was successfully installed, options will appear.
 
@@ -40,7 +42,9 @@ pip install -e .
 
 Test if the plugin was installed correctly by repeating the following command:
 
-`qiime`
+```
+qiime
+```
 
 If successful, the metabolomics-gnps plugin is now listed in the options.
 

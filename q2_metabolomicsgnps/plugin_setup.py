@@ -9,6 +9,7 @@ plugin = Plugin(
     website='https://gnps.ucsd.edu',
     user_support_text='https://gnps.ucsd.edu',
     description='Plugin for the creation of a biom feature table for metabolomics data.',
+    short_description='Plugin for the creation of a biom feature table for metabolomics data.',
     package='q2_metabolomicsgnps'
 )
 
@@ -28,6 +29,23 @@ plugin.methods.register_function(
     description=("Computes feature BioM for metabolomics using GNPS Molecular Networking"),
     citations=[]
 )
+
+plugin.methods.register_function(
+    function=q2_metabolomicsgnps.gnps_clustering_taskimport,
+    inputs={},
+    parameters={'manifest': qiime2.plugin.Str, 'taskid': qiime2.plugin.Str},
+    input_descriptions={},
+    outputs=[('feature_table', FeatureTable[Frequency])],
+    parameter_descriptions={
+        'manifest': 'Manifest file for describing information about each file. Headers of sample-id and filepath',
+        'taskid': 'GNPS Task ID'
+    },
+    output_descriptions={'feature_table': 'Resulting feature table'},
+    name='GNPS Metabolomics MS/MS Spectral Counts - Import Existing GNPS Task',
+    description=("Computes feature BioM for metabolomics by importing GNPS Molecular Networking Task"),
+    citations=[]
+)
+
 
 plugin.methods.register_function(
     function=q2_metabolomicsgnps.mzmine2_clustering,

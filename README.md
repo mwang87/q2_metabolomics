@@ -59,29 +59,22 @@ If successful, the metabolomics-gnps plugin is now listed in the options.
 
 ### Longitudinal Data
 
-### MZmine export
+### MZmine2 Export
 
-A detailed tutorial for feature finding with MZmine2 can be found [here] (https://ccms-ucsd.github.io/GNPSDocumentation/featurebasedmolecularnetworking/).
+MZmine2 is used to find features in the data and calculate the area under the curve. A detailed tutorial for feature finding with MZmine2 can be found [here] (https://ccms-ucsd.github.io/GNPSDocumentation/featurebasedmolecularnetworking/).
 
-Download the latest version of [MZmine2] (http://mzmine.github.io/download.html).
+Upon finding all features according to the tutorial above, perform the following steps to export the features and their respective quantifications to be compatible with this Qiime2 plugin.
 
-Download the default #Bruker Maxis HD qTof# batch file from the section named as #MZMine Batch Steps# from [here] (https://ccms-ucsd.github.io/GNPSDocumentation/featurebasedmolecularnetworking/).
-
-Open the MZmine batch file in MZmine.
-
-Modify the loaded batch file and specify .mzxml file location (raw data import) and signal thresholds.
-
-Modify the export function for the feature table as follows:
+Select Export->CSV File
 
 1. Specify .csv file name and location
 2. Check “Export row ID”, “Export row m/z” and “Export row retention time”
 3. Check “Peak area”
+
+![img](img/mzmine_export.png)
+
 4. Hit OK
-5. Run batch
-
-*Screenshot MZmine PNG to be added here*
-
-6. The generated .csv file can now be used directly for further processing in Qiime2 in the Feature Based Quantification Analysis.
+5. The generated .csv file can now be used directly for further processing in Qiime2 in the Feature Based Quantification Analysis
 
 ### Manifest File Format
 
@@ -89,7 +82,7 @@ The manifest file specifies the location of the files that will be processed by 
 
 Figure X. View of the manifest file (.CSV format). The first column indicates the ‘sample-id’ for each file, while the second column indicates its corresponding relative file path. The example file can be [downloaded here](https://github.com/mwang87/q2_metabolomicsgnps/raw/master/q2_metabolomicsgnps/tests/data/manifest.tsv).
 
-<img src="img/manifest_file.png"/>
+![img](img/manifest_file.png)
 
 ## Spectrum Count Qualitative Analysis
 

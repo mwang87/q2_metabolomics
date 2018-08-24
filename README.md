@@ -50,14 +50,21 @@ If successful, the metabolomics-gnps plugin is now listed in the options.
 
 ### Plugin Commands Listing
 
-`qiime metabolomicsgnps` # Will list out all the commands
+List all commands
 
-`qiime metabolomicsgnps gnps-clustering` # MS2 GNPS Clustering Command. This function will take as input a set of mass spectrometry files (mzXML or mzML) and a manifest file to produce a biom qza file.
+`qiime metabolomicsgnps` 
 
-`qiime metabolomicsgnps gnps-clustering-taskimport` # MS2 GNPS Clustering Command. This function will take as input an existing GNPS Molecular Networking task and a manifest file to produce a biom qza file.
+MS2 GNPS Clustering Command. This function will take as input a set of mass spectrometry files (mzXML or mzML) and a manifest file to produce a biom qza file.
 
-`qiime metabolomicsgnps mzmine2-clustering` # MZmine2 Feature Import Command. This function will take as input a feature quantification file from MZmine2 and a manifest file and produce a biom qza file.
+`qiime metabolomicsgnps gnps-clustering` 
 
+MS2 GNPS Clustering Command. This function will take as input an existing GNPS Molecular Networking task and a manifest file to produce a biom qza file.
+
+`qiime metabolomicsgnps gnps-clustering-taskimport` 
+
+MZmine2 Feature Import Command. This function will take as input a feature quantification file from MZmine2 and a manifest file and produce a biom qza file.
+
+`qiime metabolomicsgnps mzmine2-clustering`
 
 ### Example of job GNPS-clustering job:
 

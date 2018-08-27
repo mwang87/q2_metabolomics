@@ -71,13 +71,9 @@ If successful, the metabolomics-gnps plugin is now listed in the options.
 
 `qiime metabolomicsgnps mzmine2-clustering --p-manifest tests/data/mzminemanifest.csv --p-quantificationtable tests/data/mzminefeatures.csv --o-feature-table feature`
 
-## Input Data Description/Download
+## Input Data Description/Download Cross-Sectional Data
 
-### Cross-Sectional Data
-
-In this tutorial, we will learn how to analyze metabolomics data using the metabolomicsgnps plugin for QIIME 2. We will leverage Global Natural Products Social Molecular Networking (GNPS) to make metabolomics data accessible within the QIIME 2 platform. We will then investigate the data by running some simple descriptive statistical analyses available through QIIME 2. 
-
-The dataset we will use for this tutorial contains cross sectional data from plant or animal sources.
+In this tutorial, we will download metabolomics data for use with the metabolomicsgnps plugin for QIIME 2. The dataset we will use for this tutorial contains cross sectional data from plant or animal sources.
 
 Navigate to a directory of your choice (e.g. Example_CrossSectional)
 `cd Example_CrossSectional`
@@ -118,6 +114,57 @@ Proceed with typing the commands below, until all raw data files, as well as man
 `rm -rf MSV000082820/data/other /`
 `mv  -v MSV000082820/data/*  MSV000082820 /`
 `rm -rf MSV000082820/data /`
+
+## Input Data Description/Download Cross-Sectional Data
+
+In this tutorial, we will download metabolomics data for use with the metabolomicsgnps plugin for QIIME 2. The dataset we will use for this tutorial contains longitudinal data on the fermentation process of milk to yogurt. 
+
+Navigate to a directory of your choice (e.g. Example_Longitudinal):
+
+`cd Example_Longitudinal`
+
+Download the example raw data files (.mzML) from [MassIVE](ftp://massive.ucsd.edu/):
+
+`wget -m ftp://massive.ucsd.edu/MSV000082821/peak/`
+
+Download all other files you will need to run the example analyses:
+
+`wget -m ftp://massive.ucsd.edu/MSV000082821/other/`
+
+Note: The files contained within the folder “other” have been created for this example dataset. If you want to recreate the example analyses listed below with your own dataset, you will have to create your own [manifest.csv](link to manifest file description) and [metadata.txt](https://docs.qiime2.org/2018.6/tutorials/metadata/) files.
+
+You will now find a folder named ‘massive.ucsd.edu’ within your working directory. To submit your raw data files (.mzML) to mass spectral molecular networking using GNPS as described below, move all your raw data files as well as the manifest.csv file within the same directory. Here we will move all above downloaded files within the directory ‘MSV000082821’.  
+
+First, move the MSV000082821 subfolder to your working directory:
+
+`mv massive.ucsd.edu/MSV000082821/ .`
+
+All your files and subfolders are now within ‘MSV000082821’. The ‘massive.ucsd.edu’ should be empty and you can delete it by typing:
+
+`rm -rf massive.ucsd.edu/`
+
+Subsequently, move the ‘peak/data’ directory, where your raw data files are located to the ‘other’ directory, where your manifest.csv and metadata.txt table are:
+
+`mv MSV000082821/peak/data/ MSV000082821/other/`
+
+The MSV000082821/peak/ folder is now empty and you can remove it:
+
+`rm -rf MSV000082821/peak/`
+
+Proceed with typing the commands below, until all raw data files, as well as manifest and metadata files are within the folder MSV000082821:
+
+`mv MSV000082821/other/data/  MSV000082821/
+mv MSV000082821/other/  MSV000082821/data/
+mv  -v MSV000082821/data/other/*  MSV000082821/data/
+rm -rf MSV000082821/data/other/
+mv  -v MSV000082821/data/*  MSV000082821/
+rm -rf MSV000082821/data/`
+
+### Cross-Sectional Data
+
+In this tutorial, we will learn how to analyze metabolomics data using the metabolomicsgnps plugin for QIIME 2. We will leverage Global Natural Products Social Molecular Networking (GNPS) to make metabolomics data accessible within the QIIME 2 platform. We will then investigate the data by running some simple descriptive statistical analyses available through QIIME 2. 
+
+The dataset we will use for this tutorial contains cross sectional data from plant or animal sources.
 
 Before you submit your files to GNPS, navigate to the folder, where your raw data and manifest.csv file is located:
 
@@ -200,47 +247,6 @@ Or drag and drop emperor_qiime2/visualization.qzv to https://view.qiime2.org/
 In this tutorial, we will learn how to analyze metabolomics data using the metabolomicsgnps plugin for QIIME 2. We will leverage Global Natural Products Social Molecular Networking (GNPS) to make metabolomics data accessible within the QIIME 2 platform. We will then investigate the data by running some simple descriptive statistical analyses available through QIIME 2.
 
 The dataset we will use for this tutorial contains longitudinal data on the fermentation process of milk to yogurt. 
-
-Navigate to a directory of your choice (e.g. Example_Longitudinal):
-
-`cd Example_Longitudinal`
-
-Download the example raw data files (.mzML) from [MassIVE](ftp://massive.ucsd.edu/):
-
-`wget -m ftp://massive.ucsd.edu/MSV000082821/peak/`
-
-Download all other files you will need to run the example analyses:
-
-`wget -m ftp://massive.ucsd.edu/MSV000082821/other/`
-
-Note: The files contained within the folder “other” have been created for this example dataset. If you want to recreate the example analyses listed below with your own dataset, you will have to create your own [manifest.csv](link to manifest file description) and [metadata.txt](https://docs.qiime2.org/2018.6/tutorials/metadata/) files.
-
-You will now find a folder named ‘massive.ucsd.edu’ within your working directory. To submit your raw data files (.mzML) to mass spectral molecular networking using GNPS as described below, move all your raw data files as well as the manifest.csv file within the same directory. Here we will move all above downloaded files within the directory ‘MSV000082821’.  
-
-First, move the MSV000082821 subfolder to your working directory:
-
-`mv massive.ucsd.edu/MSV000082821/ .`
-
-All your files and subfolders are now within ‘MSV000082821’. The ‘massive.ucsd.edu’ should be empty and you can delete it by typing:
-
-`rm -rf massive.ucsd.edu/`
-
-Subsequently, move the ‘peak/data’ directory, where your raw data files are located to the ‘other’ directory, where your manifest.csv and metadata.txt table are:
-
-`mv MSV000082821/peak/data/ MSV000082821/other/`
-
-The MSV000082821/peak/ folder is now empty and you can remove it:
-
-`rm -rf MSV000082821/peak/`
-
-Proceed with typing the commands below, until all raw data files, as well as manifest and metadata files are within the folder MSV000082821:
-
-`mv MSV000082821/other/data/  MSV000082821/
-mv MSV000082821/other/  MSV000082821/data/
-mv  -v MSV000082821/data/other/*  MSV000082821/data/
-rm -rf MSV000082821/data/other/
-mv  -v MSV000082821/data/*  MSV000082821/
-rm -rf MSV000082821/data/`
 
 Before you submit your files to GNPS, navigate to the folder, where your raw data and manifest.csv file is located:
 

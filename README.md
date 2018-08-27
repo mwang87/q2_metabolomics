@@ -78,11 +78,279 @@ MZmine2 Feature Import Command. This function will take as input a feature quant
 
 `qiime metabolomicsgnps mzmine2-clustering --p-manifest tests/data/mzminemanifest.csv --p-quantificationtable tests/data/mzminefeatures.csv --o-feature-table feature`
 
-## Input Data Description/Download
+
+### Input Data Description/Download Cross-Sectional Data
+
+In this tutorial, we will download metabolomics data for use with the metabolomicsgnps plugin for QIIME 2. The dataset we will use for this tutorial contains cross sectional data from plant or animal sources.
+
+Navigate to a directory of your choice (e.g. Example_CrossSectional)
+`cd Example_CrossSectional`
+
+Download the example raw data files (.mzML) from [MassIVE](ftp://massive.ucsd.edu/):
+
+`wget -m ftp://massive.ucsd.edu/MSV000082820/peak/`
+
+Download all other files you will need to run the example analyses:
+
+`wget -m ftp://massive.ucsd.edu/MSV000082820/other/`
+
+Note: The files contained within the folder “other” have been created for this example dataset. If you want to recreate the example analyses listed below with your own dataset, you will have to create your own [manifest.csv] (link to manifest file description) and [metadata.txt] (https://docs.qiime2.org/2018.6/tutorials/metadata/) files.
+
+You will now find a folder named ‘massive.ucsd.edu’ within your working directory. To submit your raw data files (.mzML) to mass spectral molecular networking using GNPS as described below, move all your raw data files as well as the manifest.csv file within the same directory. Here we will move all above downloaded files within the directory ‘MSV000082821’.  
+
+First, move the MSV000082820 subfolder to your working directory:
+
+`mv massive.ucsd.edu/MSV000082820/ .`
+
+All your files and subfolders are now within ‘MSV000082820’. The ‘massive.ucsd.edu’ should be empty and you can delete it by typing:
+
+`rm -rf massive.ucsd.edu/`
+
+Subsequently, move the ‘peak/data’ directory, where your raw data files are located to the ‘other’ directory, where your manifest.csv and metadata.txt table are:
+
+`mv MSV000082820/peak/data/ MSV000082820/other/`
+
+The MSV000082821/peak/ folder is now empty and you can remove it:
+
+`rm -rf MSV000082820/peak/`
+
+Proceed with typing the commands below, until all raw data files, as well as manifest and metadata files are within the folder MSV000082820:
+
+`mv MSV000082820/other/data/  MSV000082820 /`
+`mv MSV000082820/other/  MSV000082820/data /`
+`mv  -v MSV000082820/data/other/*  MSV000082820/data /`
+`rm -rf MSV000082820/data/other /`
+`mv  -v MSV000082820/data/*  MSV000082820 /`
+`rm -rf MSV000082820/data /`
+
+### Input Data Description/Download Cross-Sectional Data
+
+In this tutorial, we will download metabolomics data for use with the metabolomicsgnps plugin for QIIME 2. The dataset we will use for this tutorial contains longitudinal data on the fermentation process of milk to yogurt. 
+
+Navigate to a directory of your choice (e.g. Example_Longitudinal):
+
+`cd Example_Longitudinal`
+
+Download the example raw data files (.mzML) from [MassIVE](ftp://massive.ucsd.edu/):
+
+`wget -m ftp://massive.ucsd.edu/MSV000082821/peak/`
+
+Download all other files you will need to run the example analyses:
+
+`wget -m ftp://massive.ucsd.edu/MSV000082821/other/`
+
+Note: The files contained within the folder “other” have been created for this example dataset. If you want to recreate the example analyses listed below with your own dataset, you will have to create your own [manifest.csv](link to manifest file description) and [metadata.txt](https://docs.qiime2.org/2018.6/tutorials/metadata/) files.
+
+You will now find a folder named ‘massive.ucsd.edu’ within your working directory. To submit your raw data files (.mzML) to mass spectral molecular networking using GNPS as described below, move all your raw data files as well as the manifest.csv file within the same directory. Here we will move all above downloaded files within the directory ‘MSV000082821’.  
+
+First, move the MSV000082821 subfolder to your working directory:
+
+`mv massive.ucsd.edu/MSV000082821/ .`
+
+All your files and subfolders are now within ‘MSV000082821’. The ‘massive.ucsd.edu’ should be empty and you can delete it by typing:
+
+`rm -rf massive.ucsd.edu/`
+
+Subsequently, move the ‘peak/data’ directory, where your raw data files are located to the ‘other’ directory, where your manifest.csv and metadata.txt table are:
+
+`mv MSV000082821/peak/data/ MSV000082821/other/`
+
+The MSV000082821/peak/ folder is now empty and you can remove it:
+
+`rm -rf MSV000082821/peak/`
+
+Proceed with typing the commands below, until all raw data files, as well as manifest and metadata files are within the folder MSV000082821:
+
+`mv MSV000082821/other/data/  MSV000082821/
+mv MSV000082821/other/  MSV000082821/data/
+mv  -v MSV000082821/data/other/*  MSV000082821/data/
+rm -rf MSV000082821/data/other/
+mv  -v MSV000082821/data/*  MSV000082821/
+rm -rf MSV000082821/data/`
 
 ### Cross-Sectional Data
 
+In this tutorial, we will learn how to analyze metabolomics data using the metabolomicsgnps plugin for QIIME 2. We will leverage Global Natural Products Social Molecular Networking (GNPS) to make metabolomics data accessible within the QIIME 2 platform. We will then investigate the data by running some simple descriptive statistical analyses available through QIIME 2. 
+
+The dataset we will use for this tutorial contains cross sectional data from plant or animal sources.
+
+Before you submit your files to GNPS, navigate to the folder, where your raw data and manifest.csv file is located:
+
+`cd MSV000082820/`
+
+Now activate your qiime2 conda environment by typing: 
+
+`source activate qiime2-2018.6`
+
+Submit your raw data files to mass spectral molecular networking using [GNPS](https://gnps.ucsd.edu/ProteoSAFe/static/gnps-splash.jsp):
+
+Now we are ready to start using QIIME 2 commands with our data. For the first step, we will use the gnps-clustering method to perform GNPS mass spectral network analysis:
+
+`qiime metabolomicsgnps gnps-clustering \
+ --p-manifest manifest.csv \
+ --p-username [enter user GNPS username] \
+ --p-password [enter user GNPS password] \
+ --o-feature-table feature`
+
+Provide the name of your manifest.csv file, your GNPS username and password. Once the GNPS network analysis is finished, you will find the GNPS bucket table/feature table in .qza format within the directory you are currently in directory you specified. Your job will appear in your job list at gnps.ucsd.edu once the files are loaded into GNPS where you can then track progress.
+
+We will now rename your GNPS feature table to something more descriptive “catagorical_ms2.qza”
+
+`mv feature.qza catagorical_ms2.qza`
+
+To generate visual and tabular summaries of your feature table, you can use the qiime [feature-table summarize](https://docs.qiime2.org/2018.2/plugins/available/feature-table/summarize/) function whilst staying in the output folder: 
+
+`qiime feature-table summarize \
+ --i-table catagorical_ms2.qza \
+ --o-visualization table.qzv  \
+ --m-sample-metadata-file metadata.txt`
+
+To generate a tabular view of your metadata file, you can use the [qiime metadata tabulate] (https://docs.qiime2.org/2017.10/plugins/available/metadata/tabulate/) function. The output visualization enables interactive filtering, sorting, and exporting to common file formats:
+
+`qiime metadata tabulate \
+ --m-input-file metadata.txt \
+ --o-visualization tabulated-metadata.qzv`
+
+To compute the Shannon diversity index for all samples contained within your mass spectral feature table, use the qiime diversity alpha function: 
+
+`qiime diversity alpha \
+ --i-table catagorical_ms2.qza \
+ --p-metric shannon \
+ --o-alpha-diversity shannon.qza`
+
+The output file ‘shannon.qza’ contains the per sample Shannon diversity index. You can inspect a .qza file by using a Text Editor (e.g. TextWrangler).
+
+To compute all pairwise canberra distances, you can use the qiime diversity beta function:
+
+`qiime diversity beta \
+ --i-table catagorical_ms2.qza \
+ 	--p-metric canberra \
+ 	--output-dir canberra_qiime2`
+
+The output consists of a distance matrix, comprising the canberra distances of all pairs of samples provided in the mass spectral feature table. You can specify a distance metric of your choice using the --p-metric option (e.g. braycurtis, jaccard, mahalanobis, euclidean, etc.)
+
+The resulting distance matrix can be used for PCoA analysis. To create PCos from the above created canberra matrix of pairwise distances type:
+
+`qiime diversity pcoa \
+ 	--i-distance-matrix canberra_qiime2/distance_matrix.qza \
+ --output-dir pcoa_canberra_qiime2`
+
+To create an interactive ordination plot of the above created PCoA with integrated sample metadata use the qiime emperor plot function. Make sure that the ‘sample-id’s provided in the metadata file correspond to the sample-ids in the canberra distance_matrix.qza file:
+
+`qiime emperor plot \
+ 	--i-pcoa pcoa_canberra_qiime2/pcoa.qza \
+ 	--m-metadata-file metadata.txt \
+ 	--output-dir emperor_qiiime2`
+
+To visualize the PCoA type:
+
+`qiime tools view emperor_qiime2/visualization.qzv`
+
+Or drag and drop emperor_qiime2/visualization.qzv to https://view.qiime2.org/
+
+#IMAGE GOES HERE
+
 ### Longitudinal Data
+
+In this tutorial, we will learn how to analyze metabolomics data using the metabolomicsgnps plugin for QIIME 2. We will leverage Global Natural Products Social Molecular Networking (GNPS) to make metabolomics data accessible within the QIIME 2 platform. We will then investigate the data by running some simple descriptive statistical analyses available through QIIME 2.
+
+The dataset we will use for this tutorial contains longitudinal data on the fermentation process of milk to yogurt. 
+
+Before you submit your files to GNPS, navigate to the folder, where your raw data and manifest.csv file is located:
+
+`cd MSV000082821/`
+
+Now activate your qiime2 conda environment by typing: 
+
+`source activate qiime2-2018.6`
+
+If you do not remember the name of your qiime2 conda environment, you can get a list of all conda environments installed on your computer by typing:
+
+`conda env list`
+
+Submit your raw data files to mass spectral molecular networking using [GNPS](https://gnps.ucsd.edu/ProteoSAFe/static/gnps-splash.jsp):
+
+Now we are ready to start using QIIME 2 commands with our data. For the first step, we will use the gnps-clustering method to perform GNPS mass spectral network analysis:
+
+`qiime metabolomicsgnps gnps-clustering \
+ 	--p-manifest manifest_longitudinal.csv \
+ 	--p-username USERNAME \ 
+ 	--p-password PASSWORD
+  --output-dir out`
+
+Provide the name of your manifest.csv file, your GNPS username and password and specify an output directory of your choice (here “out”). Once the GNPS network analysis is finished, you will find the GNPS bucket table/feature table in .qza format within the output directory you specified.
+
+Perform descriptive statistical analyses of the mass spectral feature table retrieved from GNPS using qiime2
+
+Below examples of simple descriptive statistical analyses are given, which can be performed on your mass spectral feature table using qiime2. For any qiime2 function used below you can retrieve a brief description and information about parameters using the --help option. For example, to retrieve a description of the qiime diversity beta function type:
+
+`qiime diversity beta --help`
+
+Generate visual and tabular summaries of a feature table
+
+To generate visual and tabular summaries of your feature table, you can use the qiime [feature-table summarize](https://docs.qiime2.org/2018.2/plugins/available/feature-table/summarize/) function: 
+
+`qiime feature-table summarize \
+  --i-table out/feature_table.qza \
+  --o-visualization table.qzv`
+
+This will create a qiime .qzv object, you can open it by typing:
+
+`qiime tools view table.qzv`
+
+Or drag and drop to:
+`https://view.qiime2.org/`
+
+Generate a tabular view of Metadata
+
+To generate a tabular view of your metadata file, you can use the [qiime metadata tabulate] (https://docs.qiime2.org/2017.10/plugins/available/metadata/tabulate/) function. The output visualization enables interactive filtering, sorting, and exporting to common file formats:
+
+`qiime metadata tabulate \
+  --m-input-file metadata_longitudinal.txt \
+  --o-visualization tabulated-metadata.qzv`
+
+Compute the Shannon diversity index for all samples
+
+To compute the Shannon diversity index for all samples contained within your mass spectral feature table, use the qiime diversity alpha function: 
+
+`qiime diversity alpha \
+  --i-table out/feature_table.qza \
+  --p-metric shannon \
+  --o-alpha-diversity shannon.qza`
+
+The output file ‘shannon.qza’ contains the per sample Shannon diversity index. You can inspect a .qza file by using a Text Editor (e.g. TextWrangler).
+
+Compute pairwise canberra distances and visualization in interactive PCoA space
+
+To compute all pairwise canberra distances, you can use the qiime diversity beta function:
+
+`qiime diversity beta \
+  --i-table out/feature_table.qza \
+  --p-metric canberra \
+  --output-dir canberra_qiime2`
+
+The output consists of a distance matrix, comprising the canberra distances of all pairs of samples provided in the mass spectral feature table. You can specify a distance metric of your choice using the --p-metric option (e.g. braycurtis, jaccard, mahalanobis, euclidean, etc.)
+
+The resulting distance matrix can be used for PCoA analysis. To create PCos from the above created canberra matrix of pairwise distances type:
+
+`qiime diversity pcoa \
+  --i-distance-matrix canberra_qiime2/distance_matrix.qza \
+  --output-dir pcoa_canberra_qiime2`
+
+To create an interactive ordination plot of the above created PCoA with integrated sample metadata use the qiime emperor plot function. Make sure that the ‘sample-id’s provided in the metadata file correspond to the sample-ids in the canberra distance_matrix.qza file:
+
+`qiime emperor plot \
+  --i-pcoa pcoa_canberra_qiime2/pcoa.qza \
+  --m-metadata-file metadata_longitudinal.txt \
+ 	 --output-dir emperor_qiime2`
+
+To visualize the PCoA type:
+
+`qiime tools view emperor_qiime2/visualization.qzv`
+
+Or drag and drop emperor_qiime2/visualization.qzv to https://view.qiime2.org/
+
+#IMAGE GOES HERE
 
 ### MZmine2 Export
 

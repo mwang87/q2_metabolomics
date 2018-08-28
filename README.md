@@ -332,7 +332,7 @@ qiime feature-table summarize \
 ```
 
 **Output artifacts:**
-* `table_summary_long.qzv`: [view](https://view.qiime2.org/?src=) | [download]()
+* `table_summary_long.qzv`: [view](https://view.qiime2.org/?src=https%3A%2F%2Fgithub.com%2Frsilvabioinfo%2Fq2_metabolomicsgnps%2Fblob%2Fmaster%2Fqzv%2Ftable_summary_long.qzv%3Fraw%3Dtrue) | [download](https://github.com/rsilvabioinfo/q2_metabolomicsgnps/blob/master/qzv/table_summary_long.qzv?raw=true)
 
 This will create a qiime .qzv object, you can open it by typing:
 
@@ -394,13 +394,18 @@ qiime emperor plot \
   --output-dir emperor_qiime2
 ```
 
+**Output artifacts:**
+* `pcoa_visualization_long.qzv`: [view](https://view.qiime2.org/?src=./qzv/pcoa_long.qzv) | [download](https://github.com/rsilvabioinfo/q2_metabolomicsgnps/blob/master/qzv/pcoa_visualization_long.qzv?raw=true)
+
 To visualize the PCoA type:
 
 `qiime tools view emperor_qiime2/visualization.qzv`
 
 Or drag and drop emperor_qiime2/visualization.qzv to https://view.qiime2.org/
 
-#IMAGE GOES HERE
+You should be able to create the following visualization:
+
+![img](img/pcoa_visualization_long.png)
 
 ### MZmine2 Export
 

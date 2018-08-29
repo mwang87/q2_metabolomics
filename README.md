@@ -457,7 +457,6 @@ To visualize the results of [`PERMANOVA_spectralCounts_longitudinal.qzv`](https:
 
 Sometimes before performing any of the above analyses you will want to filter out samples from your original mass spectral feature table. For example, large datasets may be computationally intensive, so filtering them down to just the data we’re interested in before downstream analysis can be advantageous. 
 
-<<<<<<< HEAD
 You can do this directly from your mass spectral feature table in the .qza format using the qiime feature-table filter-samples function. To create a feature table containing only milk samples during different stages of the fermentation process to yogurt, without including the yogurt samples (exclude ‘not applicable’ in the metadata category ‘age’), type:
 
 ```
@@ -510,11 +509,6 @@ Here is an example file for [`emperor_qiime2_custom_axe_age/visualization.qzv`](
 You should be able to create the following visualization:
 
 ![img](img/pcoaFixedAxis_spectralCounts_longitudinal.png)
-=======
-### Tutorial for Spectrum Count Qualitative Analysis: Food Cross Sectional Study
-
-### Tutorial for Spectrum Count Qualitative Analysis: Longitudinal Study
->>>>>>> upstream/master
 
 ## Feature Based Quantification Analysis
 

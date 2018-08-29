@@ -379,9 +379,9 @@ Figure X. View of the manifest file (.CSV format). The first column indicates th
 
 ## Spectrum Count Qualitative Analysis
 
-### Food Cross Sectional Study
+### Tutorial for Spectrum Count Qualitative Analysis: Food Cross Sectional Study
 
-### Longitudinal Study
+### Tutorial for Spectrum Count Qualitative Analysis: Longitudinal Study
 
 ## Feature Based Quantification Analysis
 
@@ -394,6 +394,67 @@ Figure X. View of the manifest file (.CSV format). The first column indicates th
 
 To create “quantificationtable” please follow the steps outlined in the tutorial “Qiime2 - MZmine export – Documentation”
 
-### Food Cross Sectional Study
+### Tutorial for Feature Based Quanitification Analysis: Food Cross Sectional Study
 
-### Longitudinal Study
+# Specify the path to manifest file and mzmine2 feature table
+This step creates qza file for further analysis in Qiime2
+
+`qiime metabolomicsgnps mzmine2-clustering \
+--p-manifest manifest_cat.csv  \
+--p-quantificationtable Feature_Table_Cat.csv \ 
+--o-feature-table feature_mzmine2_cat.qza`
+
+# Create a summary table
+This step creates qzv file for further visualization in qiime2 view (https://view.qiime2.org/)
+
+`qiime feature-table summarize \
+--i-table feature_mzmine2_cat.qza \
+--o-visualization table_cat.qzv \
+--m-sample-metadata-file metadata_cat.txt`
+
+The output file ‘shannon.qza’ contains the per sample Shannon diversity index. You can inspect a .qza file by using a Text Editor (e.g. TextWrangler).
+
+## Compute the Shannon diversity index for all samples
+
+To compute the Shannon diversity index for all samples contained within your MS1 feature table, use the Qiime diversity alpha function: 
+
+`qiime diversity alpha \
+  --i-table feature_mzmine2_cat.qza \
+  --p-metric shannon \
+  --o-alpha-diversity shannon.qza`
+
+The output file ‘shannon.qza’ contains the Shannon diversity index for each sample. You can inspect the .qza file by using a Text Editor (e.g. TextWrangler).
+
+## Compute pairwise canberra distances and visualization in interactive PCoA space
+
+To compute all pairwise canberra distances, you can use the qiime diversity beta function:
+
+`qiime diversity beta \
+  --i-table feature_mzmine2_cat.qza \
+  --p-metric canberra \
+  --output-dir canberra_qiime2`
+
+The output consists of a distance matrix, comprising the canberra distances of all pairs of samples provided in the mass spectral feature table. You can specify a distance metric of your choice using the --p-metric option (e.g. braycurtis, jaccard, mahalanobis, euclidean, etc.)
+
+The resulting distance matrix can be used for PCoA analysis. To create PCos from the above created canberra matrix of pairwise distances type:
+
+`qiime diversity pcoa \
+  --i-distance-matrix canberra_qiime2/distance_matrix.qza \
+  --output-dir pcoa_canberra_qiime2`
+
+To create an interactive ordination plot of the above created PCoA with integrated sample metadata use the qiime emperor plot function. Make sure that the ‘sample-id’s provided in the metadata file correspond to the sample-ids in the canberra distance_matrix.qza file:
+
+`qiime emperor plot \
+  --i-pcoa pcoa_canberra_qiime2/pcoa.qza \
+  --m-metadata-file metadata_cat.txt \
+  --output-dir emperor_qiime2`
+
+
+To visualize the PCoA type:
+
+`qiime tools view emperor_qiime2/visualization.qzv`
+
+Or drag and drop emperor_qiime2/visualization.qzv to https://view.qiime2.org/
+
+
+### Tutorial for Feature Based Quanitification Analysis: Longitudinal Study

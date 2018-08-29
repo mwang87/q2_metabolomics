@@ -1,4 +1,3 @@
-# QIIME 2 Metabolomics GNPS plugin
 
 This is a QIIME 2 plugin to analyze metabolomics data that utilizes GNPS.
 
@@ -109,7 +108,7 @@ Download all other files you will need to run the example analyses:
 
 `wget -m ftp://massive.ucsd.edu/MSV000082820/other/`
 
-Note: The files contained within the folder “other” have been created for this example dataset. If you want to recreate the example analyses listed below with your own dataset, you will have to create your own [manifest.csv] (link to manifest file description) and [metadata.txt] (https://docs.qiime2.org/2018.6/tutorials/metadata/) files.
+Note: The files contained within the folder “other” have been created for this example dataset. If you want to recreate the example analyses listed below with your own dataset, you will have to create your own [manifest.csv](link to manifest file description) and [metadata.txt](https://docs.qiime2.org/2018.6/tutorials/metadata/) files.
 
 You will now find a folder named ‘massive.ucsd.edu’ within your working directory. To submit your raw data files (.mzML) to mass spectral molecular networking using GNPS as described below, move all your raw data files as well as the manifest.csv file within the same directory. Here we will move all above downloaded files within the directory ‘MSV000082821’.  
 
@@ -140,7 +139,7 @@ mv  -v MSV000082820/data/*  MSV000082820/
 rm -rf MSV000082820/data/
 ```
 
-### Input Data Description/Download Cross-Sectional Data
+### Input Data Description/Download Longitudinal Data
 
 In this tutorial, we will download metabolomics data for use with the metabolomicsgnps plugin for QIIME 2. The dataset we will use for this tutorial contains longitudinal data on the fermentation process of milk to yogurt. 
 
@@ -187,7 +186,34 @@ mv  -v MSV000082821/data/*  MSV000082821/
 rm -rf MSV000082821/data/
 ```
 
-### Cross-Sectional Data
+### MZmine2 Export
+
+MZmine2 is used to find features in the data and calculate the area under the curve. A detailed tutorial for feature finding with MZmine2 can be found [here] (https://ccms-ucsd.github.io/GNPSDocumentation/featurebasedmolecularnetworking/).
+
+Upon finding all features according to the tutorial above, perform the following steps to export the features and their respective quantifications to be compatible with this Qiime2 plugin.
+
+Select Export->CSV File
+
+1. Specify .csv file name and location
+2. Check “Export row ID”, “Export row m/z” and “Export row retention time”
+3. Check “Peak area”
+
+![img](img/mzmine_export.png)
+
+4. Hit OK
+5. The generated .csv file can now be used directly for further processing in Qiime2 in the Feature Based Quantification Analysis
+
+### Manifest File Format
+
+The manifest file specifies the location of the files that will be processed by the metabolomicsgnps plugin. It is a .CSV formatted table that contains two columns (See Figure X below). The first column indicates the ‘sample-id’ for each file, while the second column indicates its corresponding relative file path (relative to where qiime commands are called). The gnps-clustering and the mzmine2-clustering tools are using both the same manifest file.
+
+Figure X. View of the manifest file (.CSV format). The first column indicates the ‘sample-id’ for each file, while the second column indicates its corresponding relative file path. The example file can be [downloaded here](https://github.com/mwang87/q2_metabolomicsgnps/raw/master/q2_metabolomicsgnps/tests/data/manifest.tsv).
+
+![img](img/manifest_file.png)
+
+## Spectrum Count Qualitative Analysis
+
+### Food Cross Sectional Study
 
 In this tutorial, we will learn how to analyze metabolomics data using the metabolomicsgnps plugin for QIIME 2. We will leverage Global Natural Products Social Molecular Networking (GNPS) to make metabolomics data accessible within the QIIME 2 platform. We will then investigate the data by running some simple descriptive statistical analyses available through QIIME 2. 
 
@@ -228,7 +254,7 @@ qiime feature-table summarize \
   --m-sample-metadata-file metadata.txt
 ```
 
-To generate a tabular view of your metadata file, you can use the [qiime metadata tabulate] (https://docs.qiime2.org/2017.10/plugins/available/metadata/tabulate/) function. The output visualization enables interactive filtering, sorting, and exporting to common file formats:
+To generate a tabular view of your metadata file, you can use the [qiime metadata tabulate](https://docs.qiime2.org/2017.10/plugins/available/metadata/tabulate/) function. The output visualization enables interactive filtering, sorting, and exporting to common file formats:
 
 ```
 qiime metadata tabulate \
@@ -283,7 +309,9 @@ Or drag and drop emperor_qiime2/visualization.qzv to https://view.qiime2.org/
 
 #IMAGE GOES HERE
 
-### Longitudinal Data
+
+
+### Longitudinal Study
 
 In this tutorial, we will learn how to analyze metabolomics data using the metabolomicsgnps plugin for QIIME 2. We will leverage Global Natural Products Social Molecular Networking (GNPS) to make metabolomics data accessible within the QIIME 2 platform. We will then investigate the data by running some simple descriptive statistical analyses available through QIIME 2.
 
@@ -328,22 +356,19 @@ To generate visual and tabular summaries of your feature table, you can use the 
 ```
 qiime feature-table summarize \
   --i-table out/feature_table.qza \
-  --o-visualization table_summary_long.qzv
+  --o-visualization tableSummary_spectralCounts_longitudinal.qzv 
 ```
 
-**Output artifacts:**
-* `table_summary_long.qzv`: [view](https://view.qiime2.org/?src=https%3A%2F%2Fgithub.com%2Frsilvabioinfo%2Fq2_metabolomicsgnps%2Fblob%2Fmaster%2Fqzv%2Ftable_summary_long.qzv%3Fraw%3Dtrue) | [download](https://github.com/rsilvabioinfo/q2_metabolomicsgnps/blob/master/qzv/table_summary_long.qzv?raw=true)
+This will create a qiime [`tableSummary_spectralCounts_longitudinal.qzv`](https://github.com/mwang87/q2_metabolomicsgnps/blob/master/examplefiles/tableSummary_spectralCounts_longitudinal.qzv?raw=true) object, you can open it by typing:
 
-This will create a qiime .qzv object, you can open it by typing:
-
-`qiime tools view table.qzv`
+`qiime tools view tableSummary_spectralCounts_longitudinal.qzv`
 
 Or drag and drop to:
 `https://view.qiime2.org/`
 
 Generate a tabular view of Metadata
 
-To generate a tabular view of your metadata file, you can use the [qiime metadata tabulate] (https://docs.qiime2.org/2017.10/plugins/available/metadata/tabulate/) function. The output visualization enables interactive filtering, sorting, and exporting to common file formats:
+To generate a tabular view of your metadata file, you can use the [qiime metadata tabulate](https://docs.qiime2.org/2017.10/plugins/available/metadata/tabulate/) function. The output visualization enables interactive filtering, sorting, and exporting to common file formats:
 
 ```
 qiime metadata tabulate \
@@ -394,49 +419,96 @@ qiime emperor plot \
   --output-dir emperor_qiime2
 ```
 
-**Output artifacts:**
-* `pcoa_visualization_long.qzv`: [view](https://view.qiime2.org/?src=./qzv/pcoa_long.qzv) | [download](https://github.com/rsilvabioinfo/q2_metabolomicsgnps/blob/master/qzv/pcoa_visualization_long.qzv?raw=true)
-
-To visualize the PCoA type:
+To visualize the PCoA type :
 
 `qiime tools view emperor_qiime2/visualization.qzv`
 
 Or drag and drop emperor_qiime2/visualization.qzv to https://view.qiime2.org/
 
+Here is an example file for [`emperor_qiime2/visualization.qzv`](https://github.com/mwang87/q2_metabolomicsgnps/blob/master/examplefiles/pcoa_spectralCounts_longitudinal.qzv?raw=true)
+
 You should be able to create the following visualization:
 
-![img](img/pcoa_visualization_long.png)
+![img](img/pcoa_spectralCounts_longitudinal.png)
 
-### MZmine2 Export
 
-MZmine2 is used to find features in the data and calculate the area under the curve. A detailed tutorial for feature finding with MZmine2 can be found [here] (https://ccms-ucsd.github.io/GNPSDocumentation/featurebasedmolecularnetworking/).
+Here, we can for example depict chemical differences of milk samples during the fermentation process to yogurt (black: milk, red to blueblue to red: milk with yogurt culture at different stages of the fermentation process from 0 to 58 hours. to yogurt, black: yogurt).
 
-Upon finding all features according to the tutorial above, perform the following steps to export the features and their respective quantifications to be compatible with this Qiime2 plugin.
+#### Test whether groups of samples are significantly different from one another using a Permutational multivariate analysis of variance (PERMANOVA)
 
-Select Export->CSV File
+To test whether the chemistry of the milk samples differs significantly during the fermentation process to yogurt, we can apply a Permutational multivariate analysis of variance (PERMANOVA) to our categorical metadata category ‘age’ using qiime2: 
 
-1. Specify .csv file name and location
-2. Check “Export row ID”, “Export row m/z” and “Export row retention time”
-3. Check “Peak area”
+To execute this function, we will provide the distance matrix found in the canberra_qiime2 directory, the longitudinal metadata file, a category of metadata to compute upon (in this case 'age'), an output artifact name, and the option pairwise. 
 
-![img](img/mzmine_export.png)
+```
+qiime diversity beta-group-significance \
+  --i-distance-matrix canberra_qiime2/distance_matrix.qza \
+  --m-metadata-file metadata_longitudinal.txt \
+  --m-metadata-column age \
+  --o-visualization PERMANOVA_spectralCounts_longitudinal.qzv \
+  --p-pairwise
+```
 
-4. Hit OK
-5. The generated .csv file can now be used directly for further processing in Qiime2 in the Feature Based Quantification Analysis
+To visualize the results of [`PERMANOVA_spectralCounts_longitudinal.qzv`](https://github.com/mwang87/q2_metabolomicsgnps/blob/master/examplefiles/PERMANOVA_spectralCounts_longitudinal.qzv?raw=true):
 
-### Manifest File Format
+`qiime tools view PERMANOVA_spectralCounts_longitudinal.qzv`
 
-The manifest file specifies the location of the files that will be processed by the metabolomicsgnps plugin. It is a .CSV formatted table that contains two columns (See Figure X below). The first column indicates the ‘sample-id’ for each file, while the second column indicates its corresponding relative file path (relative to where qiime commands are called). The gnps-clustering and the mzmine2-clustering tools are using both the same manifest file.
+#### Filter mass spectral feature table based on a metadata category
 
-Figure X. View of the manifest file (.CSV format). The first column indicates the ‘sample-id’ for each file, while the second column indicates its corresponding relative file path. The example file can be [downloaded here](https://github.com/mwang87/q2_metabolomicsgnps/raw/master/q2_metabolomicsgnps/tests/data/manifest.tsv).
+Sometimes before performing any of the above analyses you will want to filter out samples from your original mass spectral feature table. For example, large datasets may be computationally intensive, so filtering them down to just the data we’re interested in before downstream analysis can be advantageous. 
 
-![img](img/manifest_file.png)
+You can do this directly from your mass spectral feature table in the .qza format using the qiime feature-table filter-samples function. To create a feature table containing only milk samples during different stages of the fermentation process to yogurt, without including the yogurt samples (exclude ‘not applicable’ in the metadata category ‘age’), type:
 
-## Spectrum Count Qualitative Analysis
+```
+qiime feature-table filter-samples \
+  --i-table out/feature_table.qza \
+  --m-metadata-file metadata_longitudinal.txt \
+  --p-where "age='not applicable'" \
+  --p-exclude-ids \
+  --o-filtered-table age-table.qza
+```
 
-### Food Cross Sectional Study
 
-### Longitudinal Study
+You can now repeat all of the above analyses by substituting the feature_table.qza with the new, filtered output feature table file created here: age-table.qza. 
+
+```
+qiime metabolomicsgnps gnps-clustering \
+  --p-manifest manifest_longitudinal_age.csv
+  --p-username USERNAME \
+  --p-password PASSWORD
+  --output-dir out_age
+```
+
+```
+qiime diversity beta \
+  --i-table age-feature_table.qza \
+  --p-metric canberra \
+  --output-dir canberra_age_qiime2
+```
+
+```
+qiime diversity pcoa \
+  --i-distance-matrix canberra_age_qiime2/distance_matrix.qza \
+  --output-dir pcoa_canberra_age_qiime2
+```
+
+You can also include a numeric sample metadata column as axis in the Emperor plot. To select the ‘age’ metadata category, which you now filtered for numeric metadata only do:
+
+```
+qiime emperor plot \
+  --i-pcoa pcoa_canberra_age_qiime2/pcoa.qza \
+  --m-metadata-file metadata_longitudinal_age.txt \
+  --p-custom-axes age \
+  --output-dir emperor_qiime2_custom_axe_age
+```
+
+`qiime tools view emperor_qiime2_custom_axe_age/visualization.qzv`
+
+Here is an example file for [`emperor_qiime2_custom_axe_age/visualization.qzv`](https://github.com/mwang87/q2_metabolomicsgnps/blob/master/examplefiles/pcoaFixedAxis_spectralCounts_longitudinal.qzv?raw=true)
+
+You should be able to create the following visualization:
+
+![img](img/pcoaFixedAxis_spectralCounts_longitudinal.png)
 
 ## Feature Based Quantification Analysis
 

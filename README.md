@@ -385,6 +385,15 @@ Figure X. View of the manifest file (.CSV format). The first column indicates th
 
 ## Feature Based Quantification Analysis
 
+`source activate qiime2-2018.6`
+
+`qiime metabolomicsgnps mzmine2-clustering \
+--p-manifest 
+--p-quantificationtable 
+--o-feature-table feature`
+
+To create “quantificationtable” please follow the steps outlined in the tutorial “Qiime2 - MZmine export – Documentation”
+
 ### Food Cross Sectional Study
 
 ### Longitudinal Study

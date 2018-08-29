@@ -523,7 +523,7 @@ To create “quantificationtable” please follow the steps outlined in the tuto
 
 ### Tutorial for Feature Based Quanitification Analysis: Food Cross Sectional Study
 
-# Specify the path to manifest file and mzmine2 feature table
+#### Specify the path to manifest file and mzmine2 feature table
 This step creates qza file for further analysis in Qiime2
 
 `qiime metabolomicsgnps mzmine2-clustering \
@@ -531,7 +531,7 @@ This step creates qza file for further analysis in Qiime2
 --p-quantificationtable Feature_Table_Cat.csv \ 
 --o-feature-table feature_mzmine2_cat.qza`
 
-# Create a summary table
+#### Create a summary table
 This step creates qzv file for further visualization in qiime2 view (https://view.qiime2.org/)
 
 `qiime feature-table summarize \
@@ -541,7 +541,7 @@ This step creates qzv file for further visualization in qiime2 view (https://vie
 
 The output file ‘shannon.qza’ contains the per sample Shannon diversity index. You can inspect a .qza file by using a Text Editor (e.g. TextWrangler).
 
-## Compute the Shannon diversity index for all samples
+#### Compute the Shannon diversity index for all samples
 
 To compute the Shannon diversity index for all samples contained within your MS1 feature table, use the Qiime diversity alpha function: 
 
@@ -552,7 +552,7 @@ To compute the Shannon diversity index for all samples contained within your MS1
 
 The output file ‘shannon.qza’ contains the Shannon diversity index for each sample. You can inspect the .qza file by using a Text Editor (e.g. TextWrangler).
 
-## Compute pairwise canberra distances and visualization in interactive PCoA space
+#### Compute pairwise canberra distances and visualization in interactive PCoA space
 
 To compute all pairwise canberra distances, you can use the qiime diversity beta function:
 
@@ -586,7 +586,7 @@ Or drag and drop emperor_qiime2/visualization.qzv to https://view.qiime2.org/
 
 ### Tutorial for Feature Based Quanitification Analysis: Longitudinal Study
 
-## Specify the path to manifest file and mzmine2 feature table
+#### Specify the path to manifest file and mzmine2 feature table
 This step creates qza file for further analysis in qiime2
 	
 `qiime metabolomicsgnps mzmine2-clustering \
@@ -594,13 +594,13 @@ This step creates qza file for further analysis in qiime2
 --p-quantificationtable Feature_Table_long.csv \
 --o-feature-table feature_mzmine2_long`
 
-## Perform descriptive statistical analyses of the mass spectral feature table created using mzmine2
+#### Perform descriptive statistical analyses of the mass spectral feature table created using mzmine2
 
 Below examples of simple descriptive statistical analyses are given, which can be performed on your mzmine2(ms1) feature table using qiime2. For any qiime2 function used below you can retrieve a brief description and information about parameters using the --help option. For example, to retrieve a description of the qiime diversity beta function type:
 
 `qiime diversity beta --help`
 
-### Generate visual and tabular summaries of a feature table
+#### Generate visual and tabular summaries of a feature table
 
 To generate visual and tabular summaries of your feature table, you can use the qiime [feature-table summarize](https://docs.qiime2.org/2018.2/plugins/available/feature-table/summarize/) function: 
 
@@ -616,7 +616,7 @@ This will create a qiime .qzv object, you can open it by typing:
 Or drag and drop to:
 https://view.qiime2.org/
 
-## Generate a tabular view of Metadata
+#### Generate a tabular view of Metadata
 
 To generate a tabular view of your metadata file, you can use the [qiime metadata tabulate] (https://docs.qiime2.org/2017.10/plugins/available/metadata/tabulate/) function. The output visualization enables interactive filtering, sorting, and exporting to common file formats:
 
@@ -624,7 +624,7 @@ To generate a tabular view of your metadata file, you can use the [qiime metadat
 --m-input-file metadata_long.txt \
 --o-visualization tabulated-metadata.qzv`
 
-## Compute the Shannon diversity index for all samples
+#### Compute the Shannon diversity index for all samples
 
 To compute the Shannon diversity index for all samples contained within your mzmine2(ms1) feature table, use the qiime diversity alpha function: 
 
@@ -635,7 +635,7 @@ To compute the Shannon diversity index for all samples contained within your mzm
 
 The output file ‘shannon.qza’ contains the per sample Shannon diversity index. You can inspect a .qza file by using a Text Editor (e.g. TextWrangler).
 
-## Compute pairwise canberra distances and visualization in interactive PCoA space
+#### Compute pairwise canberra distances and visualization in interactive PCoA space
 
 To compute all pairwise canberra distances, you can use the qiime diversity beta function:
 

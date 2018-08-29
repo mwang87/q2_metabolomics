@@ -7,6 +7,7 @@ import json
 import time
 import csv
 import uuid
+import errno
 import pandas as pd
 
 def invoke_workflow(base_url, parameters, login, password):
@@ -113,6 +114,9 @@ def gnps_clustering(manifest: str, username: str, password: str)-> biom.Table:
             all_rows.append(row)
             sid = row["sample-id"]
             filepath = row["filepath"]
+            if not os.path.exists(filepath):
+                raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), filepath)
+
             fileidentifier = os.path.basename(os.path.splitext(filepath)[0])
             sid_map[fileidentifier] = sid
 

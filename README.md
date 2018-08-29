@@ -458,3 +458,83 @@ Or drag and drop emperor_qiime2/visualization.qzv to https://view.qiime2.org/
 
 
 ### Tutorial for Feature Based Quanitification Analysis: Longitudinal Study
+
+## Specify the path to manifest file and mzmine2 feature table
+This step creates qza file for further analysis in qiime2
+	
+`qiime metabolomicsgnps mzmine2-clustering \
+--p-manifest manifest_long.csv \
+--p-quantificationtable Feature_Table_long.csv \
+--o-feature-table feature_mzmine2_long`
+
+## Perform descriptive statistical analyses of the mass spectral feature table created using mzmine2
+
+Below examples of simple descriptive statistical analyses are given, which can be performed on your mzmine2(ms1) feature table using qiime2. For any qiime2 function used below you can retrieve a brief description and information about parameters using the --help option. For example, to retrieve a description of the qiime diversity beta function type:
+
+`qiime diversity beta --help`
+
+### Generate visual and tabular summaries of a feature table
+
+To generate visual and tabular summaries of your feature table, you can use the qiime [feature-table summarize](https://docs.qiime2.org/2018.2/plugins/available/feature-table/summarize/) function: 
+
+`qiime feature-table summarize \
+--i-table feature_mzmine2_long.qza \
+--o-visualization table_long.qzv \
+--m-sample-metadata-file metadata_long.txt`
+
+This will create a qiime .qzv object, you can open it by typing:
+
+`qiime tools view table_long.qzv`
+
+Or drag and drop to:
+https://view.qiime2.org/
+
+## Generate a tabular view of Metadata
+
+To generate a tabular view of your metadata file, you can use the [qiime metadata tabulate] (https://docs.qiime2.org/2017.10/plugins/available/metadata/tabulate/) function. The output visualization enables interactive filtering, sorting, and exporting to common file formats:
+
+`qiime metadata tabulate \
+--m-input-file metadata_long.txt \
+--o-visualization tabulated-metadata.qzv`
+
+## Compute the Shannon diversity index for all samples
+
+To compute the Shannon diversity index for all samples contained within your mzmine2(ms1) feature table, use the qiime diversity alpha function: 
+
+`qiime diversity alpha \
+--i-table feature_mzmine2_long.qza \
+--p-metric shannon \
+--o-alpha-diversity shannon.qza`
+
+The output file ‘shannon.qza’ contains the per sample Shannon diversity index. You can inspect a .qza file by using a Text Editor (e.g. TextWrangler).
+
+## Compute pairwise canberra distances and visualization in interactive PCoA space
+
+To compute all pairwise canberra distances, you can use the qiime diversity beta function:
+
+`qiime diversity beta \
+--i-table feature_mzmine2_long.qza \
+--p-metric canberra \
+--output-dir canberra_qiime2`
+
+The output consists of a distance matrix, comprising the canberra distances of all pairs of samples provided in the mass spectral feature table. You can specify a distance metric of your choice using the --p-metric option (e.g. braycurtis, jaccard, mahalanobis, euclidean, etc.)
+
+The resulting distance matrix can be used for PCoA analysis. To create PCos from the above created canberra matrix of pairwise distances type:
+
+`qiime diversity pcoa \
+--i-distance-matrix canberra_qiime2/distance_matrix.qza \
+--output-dir pcoa_canberra_qiime2`
+
+To create an interactive ordination plot of the above created PCoA with integrated sample metadata use the qiime emperor plot function. Make sure that the ‘sample-id’s provided in the metadata file correspond to the sample-ids in the canberra distance_matrix.qza file:
+
+`qiime emperor plot \
+--i-pcoa pcoa_canberra_qiime2/pcoa.qza \
+--m-metadata-file metadata_long.txt \
+--output-dir emperor_qiime2`
+
+To visualize the PCoA type:
+
+`qiime tools view emperor_qiime2/visualization.qzv`
+
+Or drag and drop emperor_qiime2/visualization.qzv to https://view.qiime2.org/
+

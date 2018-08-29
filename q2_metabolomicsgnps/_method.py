@@ -7,6 +7,7 @@ import json
 import time
 import csv
 import uuid
+import errno
 import pandas as pd
 
 def invoke_workflow(base_url, parameters, login, password):
@@ -113,6 +114,9 @@ def gnps_clustering(manifest: str, username: str, password: str)-> biom.Table:
             all_rows.append(row)
             sid = row["sample-id"]
             filepath = row["filepath"]
+            if not os.path.exists(filepath):
+                raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), filepath)
+
             fileidentifier = os.path.basename(os.path.splitext(filepath)[0])
             sid_map[fileidentifier] = sid
 
@@ -124,13 +128,30 @@ def gnps_clustering(manifest: str, username: str, password: str)-> biom.Table:
     """Launching GNPS Job"""
     task_id = launch_GNPS_workflow(os.path.join(username, "Qiime2", remote_folder), "Qiime2 Analysis %s" % (remote_folder), username, password, "nobody@ucsd.edu")
 
-    if task_id == None:
-        sys.exit("Error, task creation failed at GNPS")
+    if task_id is None:
+        raise ValueError('Task Creation at GNPS failed')
+    if len(task_id) != 32:
+        raise ValueError('Task Creation at GNPS failed with error %s' % (task_id))
 
     """Waiting For Job to Finish"""
     wait_for_workflow_finish("gnps.ucsd.edu", task_id)
 
     return _create_table_from_task(task_id, sid_map)
+
+def gnps_clustering_taskimport(manifest: str, taskid: str)-> biom.Table:
+    wait_for_workflow_finish("gnps.ucsd.edu", taskid)
+    sid_map = {}
+    with open(manifest) as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            sid = row["sample-id"]
+            filepath = row["filepath"]
+            fileidentifier = os.path.basename(os.path.splitext(filepath)[0])
+            sid_map[fileidentifier] = sid
+
+    return _create_table_from_task(taskid, sid_map)
+
+
 
 def _create_table_from_task(task_id, sid_map):
     """Pulling down BioM"""

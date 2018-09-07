@@ -248,7 +248,7 @@ To visualize the PCoA type:
 
 Or drag and drop emperor_qiime2/visualization.qzv to https://view.qiime2.org/
 
-#IMAGE GOES HERE
+![img](img/MS2_cross_sectional_pcoa.PNG)
 
 ### Longitudinal Data
 

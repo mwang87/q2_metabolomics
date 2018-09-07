@@ -246,7 +246,7 @@ To visualize the PCoA type:
 
 `qiime tools view emperor_qiime2/visualization.qzv`
 
-Or drag and drop [emperor_qiime2/visualization.qzv](https://github.com/lfnothias/q2_metabolomicsgnps/raw/master/examplefiles/emperor_MS2based_cross-sectional.qzv) to https://view.qiime2.org/
+Or drag and drop [emperor_qiime2/visualization.qzv](/examplefiles/emperor_MS2based_cross-sectional.qzv) to https://view.qiime2.org/
 
 ![img](img/MS2_cross_sectional_pcoa.PNG)
 

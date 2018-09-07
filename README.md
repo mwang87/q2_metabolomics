@@ -190,7 +190,7 @@ rm -rf MSV000082821/data/
 
 ### MZmine2 Export
 
-MZmine2 is used to find features in the data and calculate the area under the curve. A detailed tutorial for feature finding with MZmine2 can be found [here] (https://ccms-ucsd.github.io/GNPSDocumentation/featurebasedmolecularnetworking/).
+MZmine2 is used to find features in the data and calculate the area under the curve. A detailed tutorial for feature finding with MZmine2 can be found [here](https://ccms-ucsd.github.io/GNPSDocumentation/featurebasedmolecularnetworking/).
 
 Upon finding all features according to the tutorial above, perform the following steps to export the features and their respective quantifications to be compatible with this Qiime2 plugin.
 
@@ -508,7 +508,9 @@ qiime emperor plot \
   --output-dir emperor_qiime2_custom_axe_age
 ```
 
-`qiime tools view emperor_qiime2_custom_axe_age/visualization.qzv`
+```
+qiime tools view emperor_qiime2_custom_axe_age/visualization.qzv
+```
 
 Here is an example file for [`emperor_qiime2_custom_axe_age/visualization.qzv`](https://github.com/mwang87/q2_metabolomicsgnps/blob/master/examplefiles/pcoaFixedAxis_spectralCounts_longitudinal.qzv?raw=true)
 

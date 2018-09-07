@@ -539,7 +539,14 @@ This step creates qzv file for further visualization in qiime2 view (https://vie
 --o-visualization table_cat.qzv \
 --m-sample-metadata-file metadata_cat.txt`
 
-The output file ‘shannon.qza’ contains the per sample Shannon diversity index. You can inspect a .qza file by using a Text Editor (e.g. TextWrangler).
+This will create a qiime [`tableSummary_peakAreas_cross-sectional.qzv`](https://github.com/mwang87/q2_metabolomicsgnps/blob/master/examplefiles/tableSummary_peakAreas_cross-sectional.qzv?raw=true) object, you can open it by typing:
+
+`qiime tools view tableSummary_peakAreas_cross-sectional.qzv`
+
+Or drag and drop to:
+`https://view.qiime2.org/`
+
+Generate a tabular view of Metadata
 
 #### Compute the Shannon diversity index for all samples
 
@@ -583,6 +590,11 @@ To visualize the PCoA type:
 
 Or drag and drop emperor_qiime2/visualization.qzv to https://view.qiime2.org/
 
+Here is an example file for [`emperor_qiime2/visualization.qzv`](https://github.com/mwang87/q2_metabolomicsgnps/blob/master/examplefiles/pcoa_peakAreas_cross-sectional.qzv?raw=true)
+
+You should be able to create the following visualization:
+
+![img](img/pcoa_peakAreas_cross-sectional.png)
 
 ### Tutorial for Feature Based Quanitification Analysis: Longitudinal Study
 
@@ -623,6 +635,15 @@ To generate a tabular view of your metadata file, you can use the [qiime metadat
 `qiime metadata tabulate \
 --m-input-file metadata_long.txt \
 --o-visualization tabulated-metadata.qzv`
+
+This will create a qiime [`tableSummary_peakAreas_longitutional.qzv`](https://github.com/mwang87/q2_metabolomicsgnps/blob/master/examplefiles/tableSummary_peakAreas_longitutional.qzv?raw=true) object, you can open it by typing:
+
+`qiime tools view tableSummary_peakAreas_cross-sectional.qzv`
+
+Or drag and drop to:
+`https://view.qiime2.org/`
+
+Generate a tabular view of Metadata
 
 #### Compute the Shannon diversity index for all samples
 
@@ -665,3 +686,27 @@ To visualize the PCoA type:
 
 Or drag and drop emperor_qiime2/visualization.qzv to https://view.qiime2.org/
 
+Here is an example file for [`emperor_qiime2/visualization.qzv`](https://github.com/mwang87/q2_metabolomicsgnps/blob/master/examplefiles/pcoa_peakAreas_longitutional.qzv?raw=true)
+
+You should be able to create the following visualization:
+
+![img](img/pcoa_peakAreas_longitutional.png)
+
+#### Test whether groups of samples are significantly different from one another using a Permutational multivariate analysis of variance (PERMANOVA)
+
+To test whether the chemistry of the milk samples differs significantly during the fermentation process to yogurt, we can apply a Permutational multivariate analysis of variance (PERMANOVA) to our categorical metadata category ‘age’ using qiime2: 
+
+To execute this function, we will provide the distance matrix found in the canberra_qiime2 directory, the longitudinal metadata file, a category of metadata to compute upon (in this case 'age'), an output artifact name, and the option pairwise. 
+
+```
+qiime diversity beta-group-significance \
+  --i-distance-matrix canberra_qiime2/distance_matrix.qza \
+  --m-metadata-file metadata_longitudinal.txt \
+  --m-metadata-column age \
+  --o-visualization PERMANOVA_peakAreas_longitudinal.qzv \
+  --p-pairwise
+```
+
+To visualize the results of [`PERMANOVA_peakAreas_longitudinal.qzv`](https://github.com/mwang87/q2_metabolomicsgnps/blob/master/examplefiles/PERMANOVA_peakAreas_longitudinal.qzv?raw=true):
+
+`qiime tools view PERMANOVA_peakAreas_longitudinal.qzv`

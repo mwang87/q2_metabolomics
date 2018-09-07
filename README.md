@@ -686,11 +686,11 @@ To visualize the PCoA type:
 
 Or drag and drop emperor_qiime2/visualization.qzv to https://view.qiime2.org/
 
-Here is an example file for [`emperor_qiime2/visualization.qzv`](https://github.com/mwang87/q2_metabolomicsgnps/blob/master/examplefiles/pcoa_peakAreas_longitutional.qzv?raw=true)
+Here is an example file for [`emperor_qiime2/visualization.qzv`](https://github.com/mwang87/q2_metabolomicsgnps/blob/master/examplefiles/pcoa_peakAreas_longitutinal.qzv?raw=true)
 
 You should be able to create the following visualization:
 
-![img](img/pcoa_peakAreas_longitutional.png)
+![img](img/pcoa_peakAreas_longitutinal.png)
 
 #### Test whether groups of samples are significantly different from one another using a Permutational multivariate analysis of variance (PERMANOVA)
 

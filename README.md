@@ -690,7 +690,7 @@ Here is an example file for [`emperor_qiime2/visualization.qzv`](https://github.
 
 You should be able to create the following visualization:
 
-![img](img/pcoa_peakAreas_longitutinal.png)
+![img](img/pcoa_peakAreas_longitutional.png)
 
 #### Test whether groups of samples are significantly different from one another using a Permutational multivariate analysis of variance (PERMANOVA)
 

@@ -213,13 +213,25 @@ Figure X. View of the manifest file (.CSV format). The first column indicates th
 
 ![img](img/manifest_file.png)
 
-## Spectrum Count Qualitative Analysis
 
-### Food Cross Sectional Study
-
+# Tutorials
 In this tutorial, we will learn how to analyze metabolomics data using the metabolomicsgnps plugin for QIIME 2. We will leverage Global Natural Products Social Molecular Networking (GNPS) to make metabolomics data accessible within the QIIME 2 platform. We will then investigate the data by running some simple descriptive statistical analyses available through QIIME 2.
 
-The dataset we will use for this tutorial contains cross sectional data from plant or animal sources.
+This tutorial contains two different approaches of analysis with two example data sets, respectively.
+
+1) Spectrum Count Qualitative Analysis
+a) Food Cross Sectional Study
+b) Longitudinal Study
+2) Feature Based Quantification Analysis
+a) Food Cross Sectional Study
+b) Longitudinal Study
+
+The dataset we will use for this tutorial contains a) cross sectional data from plant or animal sources and b) longitudinal data on the fermentation process of milk to yogurt.
+
+## 1) Spectrum Count Qualitative Analysis
+### 1a) Tutorial for Spectrum Count Qualitative Analysis: Food Cross Sectional Study
+
+In this tutorial, we will learn how to analyze metabolomics data using spectrum count qualitative analysis. The dataset we will use for this tutorial contains cross sectional data from plant or animal sources.
 
 Before you submit your files to GNPS, navigate to the folder, where your raw data and manifest.csv file is located:
 
@@ -315,11 +327,9 @@ Or drag and drop [emperor_qiime2/visualization.qzv](/examplefiles/emperor_MS2bas
 
 
 
-### Longitudinal Study
+### 1b) Tutorial for Spectrum Count Qualitative Analysis: Longitudinal Study
 
-In this tutorial, we will learn how to analyze metabolomics data using the metabolomicsgnps plugin for QIIME 2. We will leverage Global Natural Products Social Molecular Networking (GNPS) to make metabolomics data accessible within the QIIME 2 platform. We will then investigate the data by running some simple descriptive statistical analyses available through QIIME 2.
-
-The dataset we will use for this tutorial contains longitudinal data on the fermentation process of milk to yogurt.
+In this tutorial, we will learn how to analyze metabolomics data using spectrum count qualitative analysis. The dataset we will use for this tutorial contains longitudinal data on the fermentation process of milk to yogurt.
 
 Before you submit your files to GNPS, navigate to the folder, where your raw data and manifest.csv file is located:
 
@@ -518,7 +528,7 @@ You should be able to create the following visualization:
 
 ![img](img/pcoaFixedAxis_spectralCounts_longitudinal.png)
 
-## Feature Based Quantification Analysis
+## 2) Feature Based Quantification Analysis
 
 ```
 source activate qiime2-2018.6
@@ -531,7 +541,8 @@ qiime metabolomicsgnps mzmine2-clustering \
 
 To create “quantificationtable” please follow the steps outlined in the tutorial “Qiime2 - MZmine export – Documentation”
 
-### Tutorial for Feature Based Quanitification Analysis: Food Cross Sectional Study
+### 2a) Tutorial for Feature Based Quantification Analysis: Food Cross Sectional Study
+In this tutorial, we will learn how to analyze metabolomics data feature based quantification. The dataset we will use for this tutorial contains cross sectional data from plant or animal sources.
 
 #### Specify the path to manifest file and mzmine2 feature table
 This step creates qza file for further analysis in Qiime2
@@ -617,7 +628,8 @@ You should be able to create the following visualization:
 
 ![img](img/pcoa_peakAreas_cross-sectional.png)
 
-### Tutorial for Feature Based Quanitification Analysis: Longitudinal Study
+### 2b) Tutorial for Feature Based Quanitification Analysis: Longitudinal Study
+In this tutorial, we will learn how to analyze metabolomics data using feature based quantification analysis. The dataset we will use for this tutorial contains longitudinal data on the fermentation process of milk to yogurt.
 
 #### Specify the path to manifest file and mzmine2 feature table
 This step creates qza file for further analysis in qiime2

@@ -219,12 +219,12 @@ In this tutorial, we will learn how to analyze metabolomics data using the metab
 
 This tutorial contains two different approaches of analysis with two example data sets, respectively.
 
-1) Spectrum Count Qualitative Analysis
-a) Food Cross Sectional Study
-b) Longitudinal Study
-2) Feature Based Quantification Analysis
-a) Food Cross Sectional Study
-b) Longitudinal Study
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1) Spectrum Count Qualitative Analysis
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a) Food Cross Sectional Study
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b) Longitudinal Study
+##### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2) Feature Based Quantification Analysis
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a) Food Cross Sectional Study
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b) Longitudinal Study
 
 The dataset we will use for this tutorial contains a) cross sectional data from plant or animal sources and b) longitudinal data on the fermentation process of milk to yogurt.
 

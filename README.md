@@ -51,26 +51,31 @@ If successful, the metabolomics-gnps plugin is now listed in the options.
 
 #### List all commands
 
-`qiime metabolomicsgnps`
+```
+qiime metabolomicsgnps
+```
 
 #### MS2 GNPS Clustering Command
 This function will take as input a set of mass spectrometry files (mzXML or mzML) and a manifest file to produce a biom qza file:
 
-`qiime metabolomicsgnps gnps-clustering`
+```
+qiime metabolomicsgnps gnps-clustering
+```
 
 ##### Example:
 ```
 qiime metabolomicsgnps gnps-clustering \
   --p-manifest data/manifest.tsv \
-  --p-username <username> \
-  --p-password <password> \
+  --p-credentials data/credentials.json \
   --o-feature-table outputfolder
 ```
 
 #### MS2 GNPS Clustering Command
 This function will take as input an existing GNPS Molecular Networking task and a manifest file to produce a biom qza file:
 
-`qiime metabolomicsgnps gnps-clustering-taskimport`
+```
+qiime metabolomicsgnps gnps-clustering-taskimport
+```
 
 ##### Example:
 
@@ -84,7 +89,9 @@ qiime metabolomicsgnps gnps-clustering \
 #### MZmine2 Feature Import Command
 This function will take as input a feature quantification file from MZmine2 and a manifest file and produce a biom qza file:
 
-`qiime metabolomicsgnps mzmine2-clustering`
+```
+qiime metabolomicsgnps mzmine2-clustering
+```
 
 ##### Example:
 
@@ -100,15 +107,22 @@ qiime metabolomicsgnps mzmine2-clustering \
 In this tutorial, we will download metabolomics data for use with the metabolomicsgnps plugin for QIIME 2. The dataset we will use for this tutorial contains cross sectional data from plant or animal sources.
 
 Navigate to a directory of your choice (e.g. Example_CrossSectional)
-`cd Example_CrossSectional`
+
+```
+cd Example_CrossSectional
+```
 
 Download the example raw data files (.mzML) from [MassIVE](ftp://massive.ucsd.edu/):
 
-`wget -m ftp://massive.ucsd.edu/MSV000082820/peak/`
+```
+wget -m ftp://massive.ucsd.edu/MSV000082820/peak/
+```
 
 Download all other files you will need to run the example analyses:
 
-`wget -m ftp://massive.ucsd.edu/MSV000082820/other/`
+```
+wget -m ftp://massive.ucsd.edu/MSV000082820/other/
+```
 
 Note: The files contained within the folder “other” have been created for this example dataset. If you want to recreate the example analyses listed below with your own dataset, you will have to create your own [manifest.csv](link to manifest file description) and [metadata.txt](https://docs.qiime2.org/2018.6/tutorials/metadata/) files.
 
@@ -116,19 +130,27 @@ You will now find a folder named ‘massive.ucsd.edu’ within your working dire
 
 First, move the MSV000082820 subfolder to your working directory:
 
-`mv massive.ucsd.edu/MSV000082820/ .`
+```
+mv massive.ucsd.edu/MSV000082820/ .
+```
 
 All your files and subfolders are now within ‘MSV000082820’. The ‘massive.ucsd.edu’ should be empty and you can delete it by typing:
 
-`rm -rf massive.ucsd.edu/`
+```
+rm -rf massive.ucsd.edu/
+```
 
 Subsequently, move the ‘peak/data’ directory, where your raw data files are located to the ‘other’ directory, where your manifest.csv and metadata.txt table are:
 
-`mv MSV000082820/peak/data/ MSV000082820/other/`
+```
+mv MSV000082820/peak/data/ MSV000082820/other/
+```
 
 The MSV000082821/peak/ folder is now empty and you can remove it:
 
-`rm -rf MSV000082820/peak/`
+```
+rm -rf MSV000082820/peak/
+```
 
 Proceed with typing the commands below, until all raw data files, as well as manifest and metadata files are within the folder MSV000082820:
 
@@ -213,6 +235,16 @@ Figure X. View of the manifest file (.CSV format). The first column indicates th
 
 ![img](img/manifest_file.png)
 
+
+### GNPS Credentials File format
+GNPS login credentials will be specified in json format, in the following example:
+
+```
+{
+    "username": "your username",
+    "password": "your password"
+}
+```
 
 # Tutorials
 In this tutorial, we will learn how to analyze metabolomics data using the metabolomicsgnps plugin for QIIME 2. We will leverage Global Natural Products Social Molecular Networking (GNPS) to make metabolomics data accessible within the QIIME 2 platform. We will then investigate the data by running some simple descriptive statistical analyses available through QIIME 2.
@@ -741,9 +773,9 @@ You should be able to create the following visualization:
 
 #### Test whether groups of samples are significantly different from one another using a Permutational multivariate analysis of variance (PERMANOVA)
 
-To test whether the chemistry of the milk samples differs significantly during the fermentation process to yogurt, we can apply a Permutational multivariate analysis of variance (PERMANOVA) to our categorical metadata category ‘age’ using qiime2: 
+To test whether the chemistry of the milk samples differs significantly during the fermentation process to yogurt, we can apply a Permutational multivariate analysis of variance (PERMANOVA) to our categorical metadata category ‘age’ using qiime2:
 
-To execute this function, we will provide the distance matrix found in the canberra_qiime2 directory, the longitudinal metadata file, a category of metadata to compute upon (in this case 'age'), an output artifact name, and the option pairwise. 
+To execute this function, we will provide the distance matrix found in the canberra_qiime2 directory, the longitudinal metadata file, a category of metadata to compute upon (in this case 'age'), an output artifact name, and the option pairwise.
 
 ```
 qiime diversity beta-group-significance \

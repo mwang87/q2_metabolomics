@@ -1,0 +1,34 @@
+package:
+  name: q2-metabolomics
+  version: "0.0.1"
+
+source:
+  path: .
+
+requirements:
+  build:
+    - python 3.5*
+    - setuptools
+
+build:
+  noarch: generic
+
+run:
+  - python 3.5*
+  - setuptools
+  - pandas
+  - qiime2
+  - q2-types
+  - q2-feature-table
+  - q2-metadata
+  - biom-format
+  - biom-format
+  - ftputil
+  - requests
+  - uuid
+
+about:
+   home: https://github.com/mwang87/q2-metabolomics
+   license: MIT
+   license_file: LICENSE
+   summary: "Metabolomics Import using GNPS for qiime2"

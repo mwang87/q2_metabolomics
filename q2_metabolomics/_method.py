@@ -40,7 +40,6 @@ def upload_to_gnps(input_filename, folder_for_spectra, group_name, username, pas
         names = ftp_host.listdir(ftp_host.curdir)
         try:
             if not folder_for_spectra in names:
-                print("MAKING DIR")
                 ftp_host.mkdir(folder_for_spectra)
         except:
             print("Cannot Make Folder", folder_for_spectra)
@@ -48,7 +47,6 @@ def upload_to_gnps(input_filename, folder_for_spectra, group_name, username, pas
         ftp_host.chdir(folder_for_spectra)
         try:
             if not group_name in ftp_host.listdir(ftp_host.curdir):
-                print("MAKING Group DIR")
                 ftp_host.mkdir(group_name)
         except:
             print("Cannot Make Folder", group_name)
@@ -90,18 +88,21 @@ def launch_GNPS_workflow(ftp_path, job_description, username, password, email):
     return task_id
 
 def wait_for_workflow_finish(base_url, task_id):
-    url = 'https://' + base_url + '/ProteoSAFe/status_json.jsp?task=' + task_id
-    json_obj = json.loads(requests.get(url, verify=False).text)
-    while (json_obj["status"] != "FAILED" and json_obj["status"] != "DONE" and json_obj["status"] != "SUSPENDED"):
-        print("Waiting for task: " + task_id)
-        time.sleep(10)
+    url = 'https://gnps.ucsd.edu/ProteoSAFe/status_json.jsp?task=%s' % (task_id)
+    exit_status = ["FAILED", "DONE", "SUSPENDED"]
+
+    while True:
         try:
-            json_obj = json.loads(requests.get(url, verify=False).text)
+            json_obj = requests.get(url, verify=False).json()
+            if json_obj["status"] in exit_status:
+                break
         except KeyboardInterrupt:
             raise
         except:
-            print("Exception In Wait")
             time.sleep(1)
+
+    if json_obj["status"] == "FAILED" or json_obj["status"] == "SUSPENDED":
+        raise Exception("GNPS Job Failed %s" % (task_id))
 
     return json_obj["status"]
 

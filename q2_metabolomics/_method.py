@@ -124,7 +124,7 @@ def import_gnpsnetworkingclustering(manifest: str, credentials: str)-> biom.Tabl
     remote_folder = str(uuid.uuid4())
 
     """Reading username and password"""
-    credentials = json.loads(open(credentials))
+    credentials = json.loads(open(credentials).read())
 
     for row in all_rows:
         upload_to_gnps(row["filepath"], "Qiime2", remote_folder, credentials["username"], credentials["password"])

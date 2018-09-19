@@ -25,17 +25,17 @@ qiime
 
 If Qiime2 was successfully installed, options will appear.
 
-To install the q2_metabolomicsgnps plugin, you have two options
+To install the q2_metabolomics plugin, you have two options
 
 ```
-conda install -c mwang87 q2-metabolomicsgnps
+conda install -c mwang87 q2-metabolomics
 ```
 
 or
 
 ```
-git clone https://github.com/mwang87/q2_metabolomicsgnps
-cd q2_metabolomicsgnps
+git clone https://github.com/mwang87/q2_metabolomics
+cd q2_metabolomics
 pip install -e .
 ```
 
@@ -45,14 +45,14 @@ Test if the plugin was installed correctly by repeating the following command:
 qiime
 ```
 
-If successful, the metabolomics-gnps plugin is now listed in the options.
+If successful, the metabolomics plugin is now listed in the options.
 
 ### Plugin Commands Listing
 
 #### List all commands
 
 ```
-qiime metabolomicsgnps
+qiime metabolomics
 ```
 
 #### MS2 GNPS Clustering Command
@@ -61,7 +61,7 @@ This function will take as input a set of mass spectrometry files (mzXML or mzML
 ##### Example:
 
 ```
-qiime metabolomicsgnps gnps-clustering \
+qiime metabolomics import_gnpsnetworkingclustering \
   --p-manifest data/manifest.tsv \
   --p-credentials data/credentials.json \
   --o-feature-table outputfolder
@@ -73,7 +73,7 @@ This function will take as input an existing GNPS Molecular Networking task and 
 ##### Example:
 
 ```
-qiime metabolomicsgnps gnps-clustering \
+qiime metabolomics import_gnpsnetworkingclusteringtask \
   --p-manifest data/manifest.tsv \
   --p-taskid cde9c128ec0c48a58e650279f1735dbc \
   --o-feature-table outputfolder
@@ -85,7 +85,7 @@ This function will take as input a feature quantification file from MZmine2 and 
 ##### Example:
 
 ```
-qiime metabolomicsgnps mzmine2-clustering \
+qiime metabolomics import_mzmine2  \
   --p-manifest tests/data/mzminemanifest.csv \
   --p-quantificationtable tests/data/mzminefeatures.csv \
   --o-feature-table feature
@@ -93,7 +93,7 @@ qiime metabolomicsgnps mzmine2-clustering \
 
 ### Input Data Description/Download Cross-Sectional Data
 
-In this tutorial, we will download metabolomics data for use with the metabolomicsgnps plugin for QIIME 2. The dataset we will use for this tutorial contains cross sectional data from plant or animal sources.
+In this tutorial, we will download metabolomics data for use with the metabolomicsgnps plugin for qiime 2. The dataset we will use for this tutorial contains cross sectional data from plant or animal sources.
 
 Navigate to a directory of your choice (e.g. Example_CrossSectional)
 
@@ -267,10 +267,9 @@ Submit your raw data files to mass spectral molecular networking using [GNPS](ht
 Now we are ready to start using QIIME 2 commands with our data. For the first step, we will use the gnps-clustering method to perform GNPS mass spectral network analysis:
 
 ```
-qiime metabolomicsgnps gnps-clustering \
+qiime metabolomics import_gnpsnetworkingclustering \
   --p-manifest manifest.csv \
-  --p-username [enter user GNPS username] \
-  --p-password [enter user GNPS password] \
+  --p-credentials credentials.json \
   --o-feature-table feature
 ```
 
@@ -369,14 +368,13 @@ Submit your raw data files to mass spectral molecular networking using [GNPS](ht
 Now we are ready to start using QIIME 2 commands with our data. For the first step, we will use the gnps-clustering method to perform GNPS mass spectral network analysis:
 
 ```
-qiime metabolomicsgnps gnps-clustering \
+qiime metabolomics import_gnpsnetworkingclustering \
   --p-manifest manifest_longitudinal.csv \
-  --p-username USERNAME \
-  --p-password PASSWORD
+  --p-credentials credentials.json \
   --output-dir out
 ```
 
-Provide the name of your manifest.csv file, your GNPS username and password and specify an output directory of your choice (here “out”). Once the GNPS network analysis is finished, you will find the GNPS bucket table/feature table in .qza format within the output directory you specified.
+Provide the name of your manifest.csv file, your GNPS credentials, and an output directory of your choice (here “out”). Once the GNPS network analysis is finished, you will find the GNPS bucket table/feature table in .qza format within the output directory you specified.
 
 Perform descriptive statistical analyses of the mass spectral feature table retrieved from GNPS using qiime2
 
@@ -509,10 +507,9 @@ qiime feature-table filter-samples \
 You can now repeat all of the above analyses by substituting the feature_table.qza with the new, filtered output feature table file created here: age-table.qza.
 
 ```
-qiime metabolomicsgnps gnps-clustering \
+qiime metabolomics import_gnpsnetworkingclustering \
   --p-manifest manifest_longitudinal_age.csv
-  --p-username USERNAME \
-  --p-password PASSWORD
+  --p-credentials credentials.json
   --output-dir out_age
 ```
 
@@ -554,7 +551,7 @@ You should be able to create the following visualization:
 ```
 source activate qiime2-2018.6
 
-qiime metabolomicsgnps mzmine2-clustering \
+qiime metabolomics import_mzmine2 \
 --p-manifest
 --p-quantificationtable
 --o-feature-table feature
@@ -569,7 +566,7 @@ In this tutorial, we will learn how to analyze metabolomics data feature based q
 This step creates qza file for further analysis in Qiime2
 
 ```
-qiime metabolomicsgnps mzmine2-clustering \
+qiime metabolomics import_mzmine2 \
 --p-manifest manifest_cat.csv  \
 --p-quantificationtable Feature_Table_Cat.csv \
 --o-feature-table feature_mzmine2_cat.qza
@@ -622,9 +619,11 @@ The output consists of a distance matrix, comprising the canberra distances of a
 
 The resulting distance matrix can be used for PCoA analysis. To create PCos from the above created canberra matrix of pairwise distances type:
 
-`qiime diversity pcoa \
+```
+qiime diversity pcoa \
   --i-distance-matrix canberra_qiime2/distance_matrix.qza \
-  --output-dir pcoa_canberra_qiime2`
+  --output-dir pcoa_canberra_qiime2
+```
 
 To create an interactive ordination plot of the above created PCoA with integrated sample metadata use the qiime emperor plot function. Make sure that the ‘sample-id’s provided in the metadata file correspond to the sample-ids in the canberra distance_matrix.qza file:
 
@@ -656,7 +655,7 @@ In this tutorial, we will learn how to analyze metabolomics data using feature b
 This step creates qza file for further analysis in qiime2
 
 ```
-qiime metabolomicsgnps mzmine2-clustering \
+qiime metabolomics import_mzmine2 \
 --p-manifest manifest_long.csv \
 --p-quantificationtable Feature_Table_long.csv \
 --o-feature-table feature_mzmine2_long

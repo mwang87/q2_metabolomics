@@ -1,13 +1,12 @@
 import unittest
-import io
 import os
 import csv
-
 
 from q2_metabolomics._method import _create_table_from_task
 from q2_metabolomics import import_gnpsnetworkingclustering
 from q2_metabolomics import import_gnpsnetworkingclusteringtask
 from q2_metabolomics import import_mzmine2
+
 
 class MetabolomicsTestCase(unittest.TestCase):
 
@@ -32,8 +31,8 @@ class MetabolomicsTestCase(unittest.TestCase):
     def test_mzmine2(self):
         import_mzmine2("data/mzminemanifest.csv", "data/mzminefeatures.csv")
 
-    #def test_gnps(self):
-    #    gnps_clustering("data/manifest.tsv", "qiime2test", "qiime2test")
+    # def test_gnps(self):
+    #     gnps_clustering("data/manifest.tsv", "qiime2test", "qiime2test")
 
 
 

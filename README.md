@@ -93,7 +93,7 @@ qiime metabolomics import_mzmine2  \
 
 ### Input Data Description/Download Cross-Sectional Data
 
-In this tutorial, we will download metabolomics data for use with the metabolomicsgnps plugin for qiime 2. The dataset we will use for this tutorial contains cross sectional data from plant or animal sources.
+In this tutorial, we will download metabolomics data for use with the metabolomics plugin for qiime2. The dataset we will use for this tutorial contains cross sectional data from plant or animal sources.
 
 Navigate to a directory of your choice (e.g. Example_CrossSectional)
 
@@ -154,7 +154,7 @@ rm -rf MSV000082820/data/
 
 ### Input Data Description/Download Longitudinal Data
 
-In this tutorial, we will download metabolomics data for use with the metabolomicsgnps plugin for QIIME 2. The dataset we will use for this tutorial contains longitudinal data on the fermentation process of milk to yogurt.
+In this tutorial, we will download metabolomics data for use with the metabolomics plugin for QIIME 2. The dataset we will use for this tutorial contains longitudinal data on the fermentation process of milk to yogurt.
 
 Navigate to a directory of your choice (e.g. Example_Longitudinal):
 
@@ -218,9 +218,9 @@ Select Export->CSV File
 
 ### Manifest File Format
 
-The manifest file specifies the location of the files that will be processed by the metabolomicsgnps plugin. It is a .CSV formatted table that contains two columns (See Figure X below). The first column indicates the ‘sample-id’ for each file, while the second column indicates its corresponding relative file path (relative to where qiime commands are called). The gnps-clustering and the mzmine2-clustering tools are using both the same manifest file.
+The manifest file specifies the location of the files that will be processed by the metabolomics plugin. It is a .CSV formatted table that contains two columns (See Figure X below). The first column indicates the ‘sample-id’ for each file, while the second column indicates its corresponding relative file path (relative to where qiime commands are called). The gnps-clustering and the mzmine2-clustering tools are using both the same manifest file.
 
-Figure X. View of the manifest file (.CSV format). The first column indicates the ‘sample-id’ for each file, while the second column indicates its corresponding relative file path. The example file can be [downloaded here](https://github.com/mwang87/q2_metabolomicsgnps/raw/master/q2_metabolomicsgnps/tests/data/manifest.tsv).
+Figure X. View of the manifest file (.CSV format). The first column indicates the ‘sample-id’ for each file, while the second column indicates its corresponding relative file path. The example file can be [downloaded here](https://github.com/mwang87/q2_metabolomics/raw/master/q2_metabolomics/tests/data/manifest.tsv).
 
 ![img](img/manifest_file.png)
 
@@ -236,7 +236,7 @@ GNPS login credentials will be specified in json format, in the following exampl
 ```
 
 # Tutorials
-In this tutorial, we will learn how to analyze metabolomics data using the metabolomicsgnps plugin for QIIME 2. We will leverage Global Natural Products Social Molecular Networking (GNPS) to make metabolomics data accessible within the QIIME 2 platform. We will then investigate the data by running some simple descriptive statistical analyses available through QIIME 2.
+In this tutorial, we will learn how to analyze metabolomics data using the metabolomics plugin for QIIME 2. We will leverage Global Natural Products Social Molecular Networking (GNPS) to make metabolomics data accessible within the QIIME 2 platform. We will then investigate the data by running some simple descriptive statistical analyses available through QIIME 2.
 
 This tutorial contains two different approaches of analysis with two example data sets, respectively.
 
@@ -392,7 +392,7 @@ qiime feature-table summarize \
   --o-visualization tableSummary_spectralCounts_longitudinal.qzv
 ```
 
-This will create a qiime [`tableSummary_spectralCounts_longitudinal.qzv`](https://github.com/mwang87/q2_metabolomicsgnps/blob/master/examplefiles/tableSummary_spectralCounts_longitudinal.qzv?raw=true) object, you can open it by typing:
+This will create a qiime [`tableSummary_spectralCounts_longitudinal.qzv`](https://github.com/mwang87/q2_metabolomics/blob/master/examplefiles/tableSummary_spectralCounts_longitudinal.qzv?raw=true) object, you can open it by typing:
 
 ```
 qiime tools view tableSummary_spectralCounts_longitudinal.qzv
@@ -460,7 +460,7 @@ To visualize the PCoA type :
 
 Or drag and drop emperor_qiime2/visualization.qzv to https://view.qiime2.org/
 
-Here is an example file for [`emperor_qiime2/visualization.qzv`](https://github.com/mwang87/q2_metabolomicsgnps/blob/master/examplefiles/pcoa_spectralCounts_longitudinal.qzv?raw=true)
+Here is an example file for [`emperor_qiime2/visualization.qzv`](https://github.com/mwang87/q2_metabolomics/blob/master/examplefiles/pcoa_spectralCounts_longitudinal.qzv?raw=true)
 
 You should be able to create the following visualization:
 
@@ -484,7 +484,7 @@ qiime diversity beta-group-significance \
   --p-pairwise
 ```
 
-To visualize the results of [`PERMANOVA_spectralCounts_longitudinal.qzv`](https://github.com/mwang87/q2_metabolomicsgnps/blob/master/examplefiles/PERMANOVA_spectralCounts_longitudinal.qzv?raw=true):
+To visualize the results of [`PERMANOVA_spectralCounts_longitudinal.qzv`](https://github.com/mwang87/q2_metabolomics/blob/master/examplefiles/PERMANOVA_spectralCounts_longitudinal.qzv?raw=true):
 
 `qiime tools view PERMANOVA_spectralCounts_longitudinal.qzv`
 
@@ -540,7 +540,7 @@ qiime emperor plot \
 qiime tools view emperor_qiime2_custom_axe_age/visualization.qzv
 ```
 
-Here is an example file for [`emperor_qiime2_custom_axe_age/visualization.qzv`](https://github.com/mwang87/q2_metabolomicsgnps/blob/master/examplefiles/pcoaFixedAxis_spectralCounts_longitudinal.qzv?raw=true)
+Here is an example file for [`emperor_qiime2_custom_axe_age/visualization.qzv`](https://github.com/mwang87/q2_metabolomics/blob/master/examplefiles/pcoaFixedAxis_spectralCounts_longitudinal.qzv?raw=true)
 
 You should be able to create the following visualization:
 
@@ -582,7 +582,7 @@ qiime feature-table summarize \
 --m-sample-metadata-file metadata_cat.txt
 ```
 
-This will create a qiime [`tableSummary_peakAreas_cross-sectional.qzv`](https://github.com/mwang87/q2_metabolomicsgnps/blob/master/examplefiles/tableSummary_peakAreas_cross-sectional.qzv?raw=true) object, you can open it by typing:
+This will create a qiime [`tableSummary_peakAreas_cross-sectional.qzv`](https://github.com/mwang87/q2_metabolomics/blob/master/examplefiles/tableSummary_peakAreas_cross-sectional.qzv?raw=true) object, you can open it by typing:
 
 `qiime tools view tableSummary_peakAreas_cross-sectional.qzv`
 
@@ -642,7 +642,7 @@ qiime tools view emperor_qiime2/visualization.qzv
 
 Or drag and drop emperor_qiime2/visualization.qzv to https://view.qiime2.org/
 
-Here is an example file for [`emperor_qiime2/visualization.qzv`](https://github.com/mwang87/q2_metabolomicsgnps/blob/master/examplefiles/pcoa_peakAreas_cross-sectional.qzv?raw=true)
+Here is an example file for [`emperor_qiime2/visualization.qzv`](https://github.com/mwang87/q2_metabolomics/blob/master/examplefiles/pcoa_peakAreas_cross-sectional.qzv?raw=true)
 
 You should be able to create the following visualization:
 
@@ -695,7 +695,7 @@ qiime metadata tabulate \
 --o-visualization tabulated-metadata.qzv
 ```
 
-This will create a qiime [`tableSummary_peakAreas_longitutional.qzv`](https://github.com/mwang87/q2_metabolomicsgnps/blob/master/examplefiles/tableSummary_peakAreas_longitutional.qzv?raw=true) object, you can open it by typing:
+This will create a qiime [`tableSummary_peakAreas_longitutional.qzv`](https://github.com/mwang87/q2_metabolomics/blob/master/examplefiles/tableSummary_peakAreas_longitutional.qzv?raw=true) object, you can open it by typing:
 
 `qiime tools view tableSummary_peakAreas_cross-sectional.qzv`
 
@@ -753,7 +753,7 @@ To visualize the PCoA type:
 
 Or drag and drop emperor_qiime2/visualization.qzv to https://view.qiime2.org/
 
-Here is an example file for [`emperor_qiime2/visualization.qzv`](https://github.com/mwang87/q2_metabolomicsgnps/blob/master/examplefiles/pcoa_peakAreas_longitutinal.qzv?raw=true)
+Here is an example file for [`emperor_qiime2/visualization.qzv`](https://github.com/mwang87/q2_metabolomics/blob/master/examplefiles/pcoa_peakAreas_longitutinal.qzv?raw=true)
 
 You should be able to create the following visualization:
 
@@ -774,6 +774,6 @@ qiime diversity beta-group-significance \
   --p-pairwise
 ```
 
-To visualize the results of [`PERMANOVA_peakAreas_longitudinal.qzv`](https://github.com/mwang87/q2_metabolomicsgnps/blob/master/examplefiles/PERMANOVA_peakAreas_longitudinal.qzv?raw=true):
+To visualize the results of [`PERMANOVA_peakAreas_longitudinal.qzv`](https://github.com/mwang87/q2_metabolomics/blob/master/examplefiles/PERMANOVA_peakAreas_longitudinal.qzv?raw=true):
 
 `qiime tools view PERMANOVA_peakAreas_longitudinal.qzv`

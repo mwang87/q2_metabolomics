@@ -113,7 +113,7 @@ def gnps_clustering(manifest: str, credentials: str)-> biom.Table:
         reader = csv.DictReader(csvfile)
         for row in reader:
             all_rows.append(row)
-            sid = row["sample-id"]
+            sid = row["sample_name"]
             filepath = row["filepath"]
             if not os.path.exists(filepath):
                 raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), filepath)
@@ -148,7 +148,7 @@ def gnps_clustering_taskimport(manifest: str, taskid: str)-> biom.Table:
     with open(manifest) as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            sid = row["sample-id"]
+            sid = row["sample_name"]
             filepath = row["filepath"]
             fileidentifier = os.path.basename(os.path.splitext(filepath)[0])
             sid_map[fileidentifier] = sid

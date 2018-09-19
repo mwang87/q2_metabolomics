@@ -105,7 +105,7 @@ def wait_for_workflow_finish(base_url, task_id):
 
     return json_obj["status"]
 
-def gnps_clustering(manifest: str, username: str, password: str)-> biom.Table:
+def gnps_clustering(manifest: str, credentials: str)-> biom.Table:
     all_rows = []
     sid_map = {}
     with open(manifest) as csvfile:
@@ -122,11 +122,14 @@ def gnps_clustering(manifest: str, username: str, password: str)-> biom.Table:
 
     remote_folder = str(uuid.uuid4())
 
+    """Reading username and password"""
+    credentials = json.loads(open(credentials))
+
     for row in all_rows:
-        upload_to_gnps(row["filepath"], "Qiime2", remote_folder, username, password)
+        upload_to_gnps(row["filepath"], "Qiime2", remote_folder, credentials["username"], credentials["password"])
 
     """Launching GNPS Job"""
-    task_id = launch_GNPS_workflow(os.path.join(username, "Qiime2", remote_folder), "Qiime2 Analysis %s" % (remote_folder), username, password, "nobody@ucsd.edu")
+    task_id = launch_GNPS_workflow(os.path.join(credentials["username"], "Qiime2", remote_folder), "Qiime2 Analysis %s" % (remote_folder), credentials["username"], credentials["password"], "nobody@ucsd.edu")
 
     if task_id is None:
         raise ValueError('Task Creation at GNPS failed')

@@ -16,13 +16,12 @@ plugin = Plugin(
 plugin.methods.register_function(
     function=q2_metabolomicsgnps.gnps_clustering,
     inputs={},
-    parameters={'manifest': qiime2.plugin.Str, 'username': qiime2.plugin.Str, 'password': qiime2.plugin.Str},
+    parameters={'manifest': qiime2.plugin.Str, 'credentials': qiime2.plugin.Str},
     input_descriptions={},
     outputs=[('feature_table', FeatureTable[Frequency])],
     parameter_descriptions={
         'manifest': 'Manifest file for describing information about each file. Headers of sample-id and filepath',
-        'username': 'GNPS login username',
-        'password': 'GNPS long password'
+        'credentials': 'GNPS login credentials json'
     },
     output_descriptions={'feature_table': 'Resulting feature table'},
     name='GNPS Metabolomics MS/MS Spectral Counts',

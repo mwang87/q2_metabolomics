@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="q2-metabolomicsgnps",
+    name="q2-metabolomics",
     version="0.0.1",
     packages=find_packages(),
     author="Mingxun Wang",
@@ -10,7 +10,7 @@ setup(
     license='BSD-3-Clause',
     url="https://gnps.ucsd.edu",
     entry_points={
-        'qiime2.plugins': ['q2-metabolomicsgnps=q2_metabolomicsgnps.plugin_setup:plugin']
+        'qiime2.plugins': ['q2-metabolomics=q2_metabolomics.plugin_setup:plugin']
     },
     install_requires=["ftputil", "requests", "pandas", "uuid", "biom-format"],
 )

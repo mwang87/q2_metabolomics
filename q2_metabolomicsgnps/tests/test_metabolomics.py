@@ -4,10 +4,10 @@ import os
 import csv
 
 
-from q2_metabolomicsgnps._method import _create_table_from_task
-from q2_metabolomicsgnps import gnps_clustering
-from q2_metabolomicsgnps import gnps_clustering_taskimport
-from q2_metabolomicsgnps import mzmine2_clustering
+from q2_metabolomics._method import _create_table_from_task
+from q2_metabolomics import gnps_clustering
+from q2_metabolomics import gnps_clustering_taskimport
+from q2_metabolomics import mzmine2_clustering
 
 class MetabolomicsTestCase(unittest.TestCase):
 

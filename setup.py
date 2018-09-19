@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name="q2-metabolomicsgnps",
     version="0.0.1",
-    packages=["ftputil", "requests", "json", "csv", "pandas", "uuid", "biom-format", "tempfile"],
+    packages=find_packages(),
     author="Mingxun Wang",
     author_email="mwang87@gmail.com",
     description="This is a Qiime2 plugin that integrates with GNPS to create BioM tables for metabolomics data.",
@@ -11,5 +11,6 @@ setup(
     url="https://gnps.ucsd.edu",
     entry_points={
         'qiime2.plugins': ['q2-metabolomicsgnps=q2_metabolomicsgnps.plugin_setup:plugin']
-    }
+    },
+    install_requires=["ftputil", "requests", "pandas", "uuid", "biom-format"],
 )

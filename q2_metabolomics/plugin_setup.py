@@ -14,7 +14,7 @@ plugin = Plugin(
 )
 
 plugin.methods.register_function(
-    function=q2_metabolomics.gnps_clustering,
+    function=q2_metabolomics.import_gnpsnetworkingclustering,
     inputs={},
     parameters={'manifest': qiime2.plugin.Str, 'credentials': qiime2.plugin.Str},
     input_descriptions={},
@@ -30,7 +30,7 @@ plugin.methods.register_function(
 )
 
 plugin.methods.register_function(
-    function=q2_metabolomics.gnps_clustering_taskimport,
+    function=q2_metabolomics.import_gnpsnetworkingclusteringtask,
     inputs={},
     parameters={'manifest': qiime2.plugin.Str, 'taskid': qiime2.plugin.Str},
     input_descriptions={},
@@ -47,7 +47,7 @@ plugin.methods.register_function(
 
 
 plugin.methods.register_function(
-    function=q2_metabolomics.mzmine2_clustering,
+    function=q2_metabolomics.import_mzmine2,
     inputs={},
     parameters={'manifest': qiime2.plugin.Str, 'quantificationtable': qiime2.plugin.Str},
     input_descriptions={},

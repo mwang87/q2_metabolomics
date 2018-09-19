@@ -5,9 +5,9 @@ import csv
 
 
 from q2_metabolomics._method import _create_table_from_task
-from q2_metabolomics import gnps_clustering
-from q2_metabolomics import gnps_clustering_taskimport
-from q2_metabolomics import mzmine2_clustering
+from q2_metabolomics import import_gnpsnetworkingclustering
+from q2_metabolomics import import_gnpsnetworkingclusteringtask
+from q2_metabolomics import import_mzmine2
 
 class MetabolomicsTestCase(unittest.TestCase):
 
@@ -27,10 +27,10 @@ class MetabolomicsTestCase(unittest.TestCase):
         _create_table_from_task(task_id, sid_map)
 
     def test_gnps_import(self):
-        gnps_clustering_taskimport("data/manifest.tsv", "cde9c128ec0c48a58e650279f1735dbc")
+        import_gnpsnetworkingclusteringtask("data/manifest.tsv", "cde9c128ec0c48a58e650279f1735dbc")
 
     def test_mzmine2(self):
-        mzmine2_clustering("data/mzminemanifest.csv", "data/mzminefeatures.csv")
+        import_mzmine2("data/mzminemanifest.csv", "data/mzminefeatures.csv")
 
     #def test_gnps(self):
     #    gnps_clustering("data/manifest.tsv", "qiime2test", "qiime2test")

@@ -106,7 +106,7 @@ def wait_for_workflow_finish(base_url, task_id):
 
     return json_obj["status"]
 
-def gnps_clustering(manifest: str, credentials: str)-> biom.Table:
+def import_gnpsnetworkingclustering(manifest: str, credentials: str)-> biom.Table:
     all_rows = []
     sid_map = {}
     with open(manifest) as csvfile:
@@ -142,7 +142,7 @@ def gnps_clustering(manifest: str, credentials: str)-> biom.Table:
 
     return _create_table_from_task(task_id, sid_map)
 
-def gnps_clustering_taskimport(manifest: str, taskid: str)-> biom.Table:
+def import_gnpsnetworkingclusteringtask(manifest: str, taskid: str)-> biom.Table:
     wait_for_workflow_finish("gnps.ucsd.edu", taskid)
     sid_map = {}
     with open(manifest) as csvfile:
@@ -177,7 +177,7 @@ def _create_table_from_task(task_id, sid_map):
     return table
 
 
-def mzmine2_clustering(manifest: str, quantificationtable: str)-> biom.Table:
+def import_mzmine2(manifest: str, quantificationtable: str)-> biom.Table:
     """Loading Manifest Mapping"""
     sid_mapping = {}
     with open(manifest) as csvfile:

@@ -102,7 +102,7 @@ def wait_for_workflow_finish(base_url, task_id):
             time.sleep(1)
 
     if json_obj["status"] == "FAILED" or json_obj["status"] == "SUSPENDED":
-        raise Exception("GNPS Job Failed %s" % (task_id))
+        raise ValueError("GNPS Job Failed %s" % (task_id))
 
     return json_obj["status"]
 

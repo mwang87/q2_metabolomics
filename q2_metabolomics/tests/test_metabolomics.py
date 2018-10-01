@@ -26,10 +26,10 @@ class MetabolomicsTestCase(unittest.TestCase):
         _create_table_from_task(task_id, sid_map)
 
     def test_gnps_import(self):
-        import_gnpsnetworkingclusteringtask("data/manifest.tsv", "cde9c128ec0c48a58e650279f1735dbc")
+        import_gnpsnetworkingclusteringtask("tests/data/manifest.tsv", "cde9c128ec0c48a58e650279f1735dbc")
 
     def test_mzmine2(self):
-        import_mzmine2("data/mzminemanifest.csv", "data/mzminefeatures.csv")
+        import_mzmine2("q2_metabolomics/tests/data/mzminemanifest.csv", "data/mzminefeatures.csv")
 
     # def test_gnps(self):
     #     gnps_clustering("data/manifest.tsv", "qiime2test", "qiime2test")

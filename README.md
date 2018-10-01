@@ -58,37 +58,22 @@ qiime metabolomics
 #### MS2 GNPS Clustering Command
 This function will take as input a set of mass spectrometry files (mzXML or mzML) and a manifest file to produce a biom qza file by processing the data via MS2 spectral counts processing at GNPS.
 
-##### Example:
-
 ```
-qiime metabolomics import_gnpsnetworkingclustering \
-  --p-manifest data/manifest.tsv \
-  --p-credentials data/credentials.json \
-  --o-feature-table outputfolder
+qiime metabolomics import_gnpsnetworkingclustering
 ```
 
 #### MS2 GNPS Clustering Command
 This function will take as input an existing GNPS Molecular Networking task and a manifest file to produce a biom qza file.
 
-##### Example:
-
 ```
-qiime metabolomics import_gnpsnetworkingclusteringtask \
-  --p-manifest data/manifest.tsv \
-  --p-taskid cde9c128ec0c48a58e650279f1735dbc \
-  --o-feature-table outputfolder
+qiime metabolomics import_gnpsnetworkingclusteringtask
 ```
 
 #### MZmine2 Feature Import Command
 This function will take as input a feature quantification file from MZmine2 and a manifest file and produce a biom qza file.
 
-##### Example:
-
 ```
-qiime metabolomics import_mzmine2  \
-  --p-manifest tests/data/mzminemanifest.csv \
-  --p-quantificationtable tests/data/mzminefeatures.csv \
-  --o-feature-table feature
+qiime metabolomics import_mzmine2
 ```
 ## Example Data
 

@@ -194,6 +194,8 @@ GNPS login credentials will be specified in json format, in the following exampl
 }
 ```
 
+To create a GNPS account, checkout the [GNPS Documentation](https://ccms-ucsd.github.io/GNPSDocumentation/quickstart/#create-a-gnps-account).
+
 # Tutorials
 In this tutorial, we will learn how to analyze metabolomics data using the metabolomics plugin for Qiime2. We will leverage Global Natural Products Social Molecular Networking ([GNPS](https://gnps.ucsd.edu/ProteoSAFe/static/gnps-splash.jsp)) to make metabolomics data accessible within the Qiime2 platform. We will then investigate the data by running some simple descriptive statistical analyses available through Qiime2.
 
@@ -315,7 +317,7 @@ Now activate your qiime2 conda environment by typing:
 Now we are ready to start using Qiime2 commands with our data. For the first step, we will use the import_gnpsnetworkingclustering method to perform GNPS mass spectral network analysis:
 
 ```
-qiime metabolomics import_gnpsnetworkingclustering \
+qiime metabolomics import-gnpsnetworkingclustering \
   --p-manifest manifest_longitudinal.csv \
   --p-credentials credentials.json \
   --o-feature-table longitudinal_ms2

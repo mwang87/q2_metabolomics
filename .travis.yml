@@ -16,6 +16,5 @@ install:
   - source activate test-env
   - conda install -q pytest-cov
   - pip install -q https://github.com/mwang87/q2_metabolomics/archive/master.zip
-  - make install
 script:
   - pytest

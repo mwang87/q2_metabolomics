@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/mwang87/q2_metabolomics.svg?branch=master)](https://travis-ci.com/mwang87/q2_metabolomics)
 
 This is a Qiime2 plugin to analyze metabolomics data that utilizes GNPS.
 

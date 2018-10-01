@@ -1,5 +1,5 @@
 
-This is a QIIME 2 plugin to analyze metabolomics data that utilizes GNPS.
+This is a Qiime2 plugin to analyze metabolomics data that utilizes GNPS.
 
 ## Background
 
@@ -173,7 +173,7 @@ Select Export->CSV File
 
 ### Manifest File Format
 
-The manifest file specifies the location of the files that will be processed by the metabolomics plugin. It is a .CSV formatted table that contains two columns (See Figure X below). The first column indicates the ‘sample-id’ for each file, while the second column indicates its corresponding relative file path (relative to where qiime commands are called). The gnps-clustering and the mzmine2-clustering tools are using both the same manifest file.
+The manifest file specifies the location of the files that will be processed by the metabolomics plugin. It is a .CSV (comma separated value) formatted table that contains two columns. The first column indicates the ‘sample-sample’ for each file, while the second column indicates its corresponding relative file path (relative to where qiime commands are called). The gnps-clustering and the mzmine2-clustering tools are using both the same manifest file.
 
 View of the manifest file (.CSV format). The first column indicates the ‘sample-same for each file, while the second column indicates its corresponding relative file path. The example file can be [downloaded here](https://github.com/mwang87/q2_metabolomics/raw/master/q2_metabolomics/tests/data/manifest.tsv).
 
@@ -224,7 +224,7 @@ Now activate your qiime2 conda environment by typing:
 Now we are ready to start using qiime2 commands with our data. For the first step, we will use the gnps-clustering method to perform GNPS mass spectral network analysis:
 
 ```
-qiime metabolomics import_gnpsnetworkingclustering \
+qiime metabolomics import-gnpsnetworkingclustering \
   --p-manifest manifest.csv \
   --p-credentials credentials.json \
   --o-feature-table categorical_ms2
@@ -253,7 +253,7 @@ To compute the Shannon diversity index for all samples contained within your mas
 
 ```
 qiime diversity alpha \
-  --i-table catagorical_ms2.qza \
+  --i-table categorical_ms2.qza \
   --p-metric shannon \
   --o-alpha-diversity shannon.qza
 ```
@@ -264,7 +264,7 @@ To compute all pairwise canberra distances, you can use the qiime diversity beta
 
 ```
 qiime diversity beta \
-  --i-table catagorical_ms2.qza \
+  --i-table categorical_ms2.qza \
   --p-metric canberra \
   --output-dir canberra_qiime2
 ```
@@ -285,7 +285,7 @@ To create an interactive ordination plot of the above created PCoA with integrat
 qiime emperor plot \
    --i-pcoa pcoa_canberra_qiime2/pcoa.qza \
    --m-metadata-file metadata.txt \
-   --output-dir emperor_qiime2`
+   --output-dir emperor_qiime2
 ```
 
 To visualize the PCoA type:

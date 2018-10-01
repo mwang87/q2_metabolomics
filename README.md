@@ -175,9 +175,13 @@ Select Export->CSV File
 
 The manifest file specifies the location of the files that will be processed by the metabolomics plugin. It is a .CSV formatted table that contains two columns (See Figure X below). The first column indicates the ‘sample-id’ for each file, while the second column indicates its corresponding relative file path (relative to where qiime commands are called). The gnps-clustering and the mzmine2-clustering tools are using both the same manifest file.
 
-Figure X. View of the manifest file (.CSV format). The first column indicates the ‘sample-id’ for each file, while the second column indicates its corresponding relative file path. The example file can be [downloaded here](https://github.com/mwang87/q2_metabolomics/raw/master/q2_metabolomics/tests/data/manifest.tsv).
+View of the manifest file (.CSV format). The first column indicates the ‘sample-same for each file, while the second column indicates its corresponding relative file path. The example file can be [downloaded here](https://github.com/mwang87/q2_metabolomics/raw/master/q2_metabolomics/tests/data/manifest.tsv).
 
-![img](img/manifest_file.png)
+| sample-name        | filepaths           |
+| ------------- |:-------------:|
+| sample1      | data/121114_nanoDESI_polar_ISP2_control_DD_MS2.mzXML |
+| sample2      | data/121119_VM37_FT-IT.mzXML |
+| sample3 | data/121207_proximicin_B_DD_MS2.mzXML |
 
 
 ### GNPS Credentials File format

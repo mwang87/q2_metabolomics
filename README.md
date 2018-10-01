@@ -296,7 +296,7 @@ To visualize the PCoA type:
 qiime tools view emperor_qiime2/visualization.qzv
 ```
 
-Or drag and drop [emperor_qiime2/visualization.qzv](/examplefiles/emperor_MS2based_cross-sectional.qzv?raw=true) to https://view.qiime2.org/
+Or drag and drop [emperor_qiime2/visualization.qzv](/examplefiles/emperor_MS2based_cross-sectional.qzv?raw=true) to [https://view.qiime2.org/](https://view.qiime2.org/)
 
 ![img](img/MS2_cross_sectional_pcoa.PNG)
 
@@ -340,7 +340,7 @@ qiime tools view tableSummary_spectralCounts_longitudinal.qzv
 ```
 
 Or drag and drop to:
-`https://view.qiime2.org/`
+[https://view.qiime2.org/](https://view.qiime2.org/)
 
 Generate a tabular view of Metadata
 
@@ -399,7 +399,7 @@ To visualize the PCoA type :
 
 `qiime tools view emperor_qiime2/visualization.qzv`
 
-Or drag and drop emperor_qiime2/visualization.qzv to https://view.qiime2.org/
+Or drag and drop emperor_qiime2/visualization.qzv to [https://view.qiime2.org/](https://view.qiime2.org/)
 
 Here is an example file for [`emperor_qiime2/visualization.qzv`](https://github.com/mwang87/q2_metabolomics/blob/master/examplefiles/pcoa_spectralCounts_longitudinal.qzv?raw=true)
 
@@ -504,7 +504,7 @@ qiime metabolomics import_mzmine2 \
 ```
 
 #### Create a summary table
-This step creates qzv file for further visualization in qiime2 view (https://view.qiime2.org/)
+This step creates qzv file for further visualization in [Qiime2 view](https://view.qiime2.org/)
 
 ```
 qiime feature-table summarize \
@@ -518,7 +518,7 @@ This will create a qiime [`tableSummary_peakAreas_cross-sectional.qzv`](https://
 `qiime tools view tableSummary_peakAreas_cross-sectional.qzv`
 
 Or drag and drop to:
-`https://view.qiime2.org/`
+[https://view.qiime2.org/](https://view.qiime2.org/)
 
 
 #### Compute the Shannon diversity index for all samples
@@ -564,7 +564,7 @@ qiime emperor plot \
   --output-dir emperor_qiime2
 ```
 
-Drag and drop emperor_qiime2/visualization.qzv to https://view.qiime2.org/
+Drag and drop emperor_qiime2/visualization.qzv to [https://view.qiime2.org/](https://view.qiime2.org/)
 
 Here is an example file for [`emperor_qiime2/visualization.qzv`](https://github.com/mwang87/q2_metabolomics/blob/master/examplefiles/pcoa_peakAreas_cross-sectional.qzv?raw=true)
 
@@ -601,7 +601,7 @@ This will create a qiime .qzv object, you can open it by typing:
 `qiime tools view table_long.qzv`
 
 Or drag and drop to:
-https://view.qiime2.org/
+[https://view.qiime2.org/](https://view.qiime2.org/)
 
 #### Generate a tabular view of Metadata
 
@@ -618,7 +618,7 @@ This will create a qiime [`tableSummary_peakAreas_longitutional.qzv`](https://gi
 `qiime tools view tableSummary_peakAreas_cross-sectional.qzv`
 
 Or drag and drop to:
-`https://view.qiime2.org/`
+[https://view.qiime2.org/](https://view.qiime2.org/)
 
 Generate a tabular view of Metadata
 
@@ -669,7 +669,7 @@ To visualize the PCoA type:
 
 `qiime tools view emperor_qiime2/visualization.qzv`
 
-Or drag and drop emperor_qiime2/visualization.qzv to https://view.qiime2.org/
+Or drag and drop emperor_qiime2/visualization.qzv to [https://view.qiime2.org/](https://view.qiime2.org/)
 
 Here is an example file for [`emperor_qiime2/visualization.qzv`](https://github.com/mwang87/q2_metabolomics/blob/master/examplefiles/pcoa_peakAreas_longitutinal.qzv?raw=true)
 

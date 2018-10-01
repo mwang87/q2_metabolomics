@@ -198,7 +198,7 @@ def import_mzmine2(manifest: str, quantificationtable: str) -> biom.Table:
     with open(manifest) as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            sid = row["sample-id"]
+            sid = row["sample_name"]
             filepath = row["filepath"]
             sid_mapping[os.path.basename(filepath)] = sid
 

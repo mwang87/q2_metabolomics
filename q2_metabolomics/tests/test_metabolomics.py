@@ -11,12 +11,12 @@ from q2_metabolomics import import_mzmine2
 class MetabolomicsTestCase(unittest.TestCase):
 
     def test_featureloading(self):
-        manifest = "data/manifest.tsv"
+        manifest = "q2_metabolomics/tests/data/manifest.tsv"
         sid_map = {}
         with open(manifest) as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                sid = row["sample-id"]
+                sid = row["sample_name"]
                 filepath = row["filepath"]
                 fileidentifier = os.path.basename(os.path.splitext(filepath)[0])
                 sid_map[fileidentifier] = sid
@@ -26,7 +26,7 @@ class MetabolomicsTestCase(unittest.TestCase):
         _create_table_from_task(task_id, sid_map)
 
     def test_gnps_import(self):
-        import_gnpsnetworkingclusteringtask("tests/data/manifest.tsv", "cde9c128ec0c48a58e650279f1735dbc")
+        import_gnpsnetworkingclusteringtask("q2_metabolomics/tests/data/manifest.tsv", "cde9c128ec0c48a58e650279f1735dbc")
 
     def test_mzmine2(self):
         import_mzmine2("q2_metabolomics/tests/data/mzminemanifest.csv", "data/mzminefeatures.csv")

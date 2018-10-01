@@ -358,7 +358,7 @@ To compute the Shannon diversity index for all samples contained within your mas
 
 ```
 qiime diversity alpha \
-  --i-table out/feature_table.qza \
+  --i-table longitudinal_ms2.qza \
   --p-metric shannon \
   --o-alpha-diversity shannon.qza
 ```
@@ -371,7 +371,7 @@ To compute all pairwise canberra distances, you can use the qiime diversity beta
 
 ```
 qiime diversity beta \
-  --i-table out/feature_table.qza \
+  --i-table longitudinal_ms2.qza \
   --p-metric canberra \
   --output-dir canberra_qiime2
 ```

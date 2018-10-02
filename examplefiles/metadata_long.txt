@@ -1,0 +1,22 @@
+sample-id	filepath	description	age	age_units	sample_set	fermented	empo_1	empo_2	empo_3
+G95952	G95952_BA6_01_31659.mzXML	milk with yogurt culture	0	hrs	A	yes	host associated	animal	animal secretion
+G95982	G95982_repeat_RB8_01_31543.mzXML	milk with yogurt culture	11	hrs	A	yes	host associated	animal	animal secretion
+G96107	G96107_repeat_RD4_01_31616.mzXML	milk with yogurt culture	24	hrs	A	yes	host associated	animal	animal secretion
+G96128	G96128_repeat2_BB7_01_31703.mzXML	milk with yogurt culture	35	hrs	A	yes	host associated	animal	animal secretion
+G96176	G96176_repeat_RE2_01_31625.mzXML	milk with yogurt culture	47	hrs	A	yes	host associated	animal	animal secretion
+G96194	G96194_RD5_01_31500.mzXML	milk with yogurt culture	58	hrs	A	yes	host associated	animal	animal secretion
+G95953	G95953_BB6_01_31682.mzXML	milk with yogurt culture	0	hrs	B	yes	host associated	animal	animal secretion
+G95983	G95983_RA9_01_31462.mzXML	milk with yogurt culture	11	hrs	B	yes	host associated	animal	animal secretion
+G96108	G96108_RC5_01_31487.mzXML	milk with yogurt culture	24	hrs	B	yes	host associated	animal	animal secretion
+G96129	G96129_RF11_01_31570.mzXML	milk with yogurt culture	35	hrs	B	yes	host associated	animal	animal secretion
+G96177	G96177_repeat_RG12_01_31637.mzXML	milk with yogurt culture	47	hrs	B	yes	host associated	animal	animal secretion
+G96195	G96195_RG6_01_31579.mzXML	milk with yogurt culture	58	hrs	B	yes	host associated	animal	animal secretion
+G95954	G95954_RF12_01_31571.mzXML	milk with yogurt culture	0	hrs	C	yes	host associated	animal	animal secretion
+G95984	G95984_repeat_RG10_01_31635.mzXML	milk with yogurt culture	11	hrs	C	yes	host associated	animal	animal secretion
+G96109	G96109_repeat_RB11_01_31549.mzXML	milk with yogurt culture	24	hrs	C	yes	host associated	animal	animal secretion
+G96130	G96130_RE9_01_31521.mzXML	milk with yogurt culture	35	hrs	C	yes	host associated	animal	animal secretion
+G96178	G96178_repeat2_RH10_01_31679.mzXML	milk with yogurt culture	47	hrs	C	yes	host associated	animal	animal secretion
+G96196	G96196_RC6_01_31488.mzXML	milk with yogurt culture	58	hrs	C	yes	host associated	animal	animal secretion
+G96383	G96383_RA9_01_31737.mzXML	organic high vitamin D milk	not applicable	hrs	A	no	host associated	animal	animal secretion
+G96384	G96384_RB6_01_31763.mzXML	organic high vitamin D milk	not applicable	hrs	B	no	host associated	animal	animal secretion
+G96385	G96385_RB3_01_31754.mzXML	organic high vitamin D milk	not applicable	hrs	C	no	host associated	animal	animal secretion

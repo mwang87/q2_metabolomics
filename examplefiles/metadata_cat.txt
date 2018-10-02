@@ -1,0 +1,25 @@
+sample-id	description	empo_1	empo_2	empo_3	sample_type_aquatic_land
+G75179	blueberry	host-associated	plant	plant-corpus	land
+G78944	boneless chicken thigh	host-associated	animal	animal-corpus	land
+G78942	boneless chuck roast	host-associated	animal	animal-corpus	land
+G72745	brussel sprouts raw (Trader Joe's)	host-associated	plant	plant-corpus	land
+G72711	"cantelope, vons, not organic"	host-associated	plant	plant-corpus	land
+G73949	chive blossom	host-associated	plant	plant-corpus	land
+G73640	fish	host-associated	animal	animal-corpus	aquatic
+G73644	fish	host-associated	animal	animal-corpus	aquatic
+G73645	fish	host-associated	animal	animal-corpus	aquatic
+G75172	greek basil	host-associated	plant	plant-corpus	land
+G78968	"ground turkey, foster farms 93%"	host-associated	animal	animal-corpus	land
+G73437	lemon inside	host-associated	plant	plant-corpus	land
+G72441	lemon peel	host-associated	plant	plant-corpus	land
+G75696	new york strip	host-associated	animal	animal-corpus	land
+G72746	organic raw beet (from Trader Joe's)	host-associated	plant	plant-corpus	land
+G79584	pacific mackerel 23	host-associated	animal	animal-corpus	aquatic
+G72517	pineapple	host-associated	plant	plant-corpus	land
+G75697	ribeye	host-associated	animal	animal-corpus	land
+G79473	small trout 14	host-associated	animal	animal-corpus	aquatic
+G79618	squid 19	host-associated	animal	animal-corpus	aquatic
+G73942	strawberry	host-associated	plant	plant-corpus	land
+G75212	sungold tomato	host-associated	plant	plant-corpus	land
+G72708	super ripe banana	host-associated	plant	plant-corpus	land
+G78948	veal shoulder roast 	host-associated	animal	animal-corpus	land

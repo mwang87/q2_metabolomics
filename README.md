@@ -483,9 +483,9 @@ In this tutorial, we will learn how to analyze metabolomics data feature based q
 This step creates qza file for further analysis in Qiime2
 
 ```
-qiime metabolomics import_mzmine2 \
---p-manifest manifest_cat.csv  \
---p-quantificationtable Feature_Table_Cat.csv \
+qiime metabolomics import-mzmine2 \
+--p-manifest manifest.csv  \
+--p-quantificationtable quantification_table_categorical.csv \
 --o-feature-table feature_mzmine2_cat.qza
 ```
 
@@ -495,8 +495,8 @@ This step creates qzv file for further visualization in [Qiime2 view](https://vi
 ```
 qiime feature-table summarize \
 --i-table feature_mzmine2_cat.qza \
---o-visualization table_cat.qzv \
---m-sample-metadata-file metadata_cat.txt
+--o-visualization tableSummary_peakAreas_cross-sectional.qzv \
+--m-sample-metadata-file metadata.txt
 ```
 
 This will create a qiime [`tableSummary_peakAreas_cross-sectional.qzv`](https://github.com/mwang87/q2_metabolomics/blob/master/examplefiles/tableSummary_peakAreas_cross-sectional.qzv?raw=true) object, you can open it by typing:
@@ -528,7 +528,7 @@ To compute all pairwise canberra distances, you can use the Qiime2 diversity bet
 qiime diversity beta \
   --i-table feature_mzmine2_cat.qza \
   --p-metric canberra \
-  --o-feature_table canberra_qiime2
+  --output-dir canberra_qiime2
 ```
 
 The output consists of a distance matrix, comprising the canberra distances of all pairs of samples provided in the mass spectral feature table. You can specify a distance metric of your choice using the --p-metric option (e.g. braycurtis, jaccard, mahalanobis, euclidean, etc.)
@@ -546,7 +546,7 @@ To create an interactive ordination plot of the above created PCoA with integrat
 ```
 qiime emperor plot \
   --i-pcoa pcoa_canberra_qiime2/pcoa.qza \
-  --m-metadata-file metadata_cat.txt \
+  --m-metadata-file metadata.txt \
   --output-dir emperor_qiime2
 ```
 
@@ -565,9 +565,9 @@ In this tutorial, we will learn how to analyze metabolomics data using feature b
 This step creates qza file for further analysis in qiime2
 
 ```
-qiime metabolomics import_mzmine2 \
---p-manifest manifest_long.csv \
---p-quantificationtable Feature_Table_long.csv \
+qiime metabolomics import-mzmine2 \
+--p-manifest manifest_longitudinal.csv \
+--p-quantificationtable quantification_table_longitudinal.csv \
 --o-feature-table feature_mzmine2_long
 ```
 
@@ -579,7 +579,7 @@ To generate visual and tabular summaries of your feature table, you can use the 
 qiime feature-table summarize \
 --i-table feature_mzmine2_long.qza \
 --o-visualization table_long.qzv \
---m-sample-metadata-file metadata_long.txt
+--m-sample-metadata-file metadata_longitudinal.txt
 ```
 
 This will create a qiime .qzv object, you can open it by typing:
@@ -595,7 +595,7 @@ To generate a tabular view of your metadata file, you can use the [qiime metadat
 
 ```
 qiime metadata tabulate \
---m-input-file metadata_long.txt \
+--m-input-file metadata_longitudinal.txt \
 --o-visualization tabulated-metadata.qzv
 ```
 
@@ -647,7 +647,7 @@ To create an interactive ordination plot of the above created PCoA with integrat
 ```
 qiime emperor plot \
 --i-pcoa pcoa_canberra_qiime2/pcoa.qza \
---m-metadata-file metadata_long.txt \
+--m-metadata-file metadata_longitudinal.txt \
 --output-dir emperor_qiime2
 ```
 

@@ -171,6 +171,19 @@ def import_gnpsnetworkingclusteringtask(manifest: str, taskid: str) -> biom.Tabl
     return _create_table_from_task(taskid, sid_map)
 
 
+def import_gnpsnetworkingclusteringbuckettable(manifest: str, buckettable: str) -> biom.Table:
+    sid_map = {}
+    with open(manifest) as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            sid = row["sample_name"]
+            filepath = row["filepath"]
+            fileidentifier = os.path.basename(os.path.splitext(filepath)[0])
+            sid_map[fileidentifier] = sid
+
+    return _create_table_from_buckettable(buckettable, sid_map)
+
+
 def _create_table_from_task(task_id, sid_map):
     """Pulling down BioM"""
     url_to_biom = "http://gnps.ucsd.edu/ProteoSAFe/DownloadResultFile?task=%s&block=main&file=cluster_buckets/" % (
@@ -181,16 +194,20 @@ def _create_table_from_task(task_id, sid_map):
     local_file.write(requests.get(url_to_biom).text)
     local_file.close()
 
-    with open(f.name) as fh:
-        table = biom.Table.from_tsv(fh, None, None, None)
-
-    table.update_ids(sid_map, axis='sample', inplace=True)
+    table = _create_table_from_buckettable(f.name, sid_map)
 
     # Cleanup Tempfile
     os.unlink(f.name)
 
     return table
 
+def _create_table_from_buckettable(buckettable_path, sid_map):
+    with open(buckettable_path) as fh:
+        table = biom.Table.from_tsv(fh, None, None, None)
+
+    table.update_ids(sid_map, axis='sample', inplace=True)
+
+    return table
 
 def import_mzmine2(manifest: str, quantificationtable: str) -> biom.Table:
     """Loading Manifest Mapping"""

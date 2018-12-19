@@ -5,6 +5,7 @@ import csv
 from q2_metabolomics._method import _create_table_from_task
 from q2_metabolomics import import_gnpsnetworkingclustering
 from q2_metabolomics import import_gnpsnetworkingclusteringtask
+from q2_metabolomics import import_gnpsnetworkingclusteringbuckettable
 from q2_metabolomics import import_mzmine2
 
 
@@ -24,6 +25,9 @@ class MetabolomicsTestCase(unittest.TestCase):
         task_id = "cde9c128ec0c48a58e650279f1735dbc"
 
         _create_table_from_task(task_id, sid_map)
+
+    def test_buckettable_import(self):
+        import_gnpsnetworkingclusteringbuckettable("q2_metabolomics/tests/data/manifest.tsv", "q2_metabolomics/tests/data/gnpsbuckettable.tsv")
 
     def test_gnps_import(self):
         import_gnpsnetworkingclusteringtask("q2_metabolomics/tests/data/manifest.tsv", "cde9c128ec0c48a58e650279f1735dbc")

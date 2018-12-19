@@ -70,6 +70,13 @@ This function will take as input an existing GNPS Molecular Networking task and 
 qiime metabolomics import-gnpsnetworkingclusteringtask
 ```
 
+#### MS2 GNPS Clustering Bucket Table Import Command
+This function will take as input an existing Bucket Table from GNPS Molecular Networking Clustering to produce a biom qza file.
+
+```
+qiime metabolomics import-gnpsnetworkingclusteringbuckettable
+```
+
 #### MZmine2 Feature Import Command
 This function will take as input a feature quantification file from MZmine2 and a manifest file and produce a biom qza file.
 
@@ -159,11 +166,11 @@ Select Export->CSV File
 
 ### Manifest File Format
 
-The manifest file specifies the location of the files that will be processed by the metabolomics plugin. It is a .CSV (comma separated value) formatted table that contains two columns. The first column indicates the ‘sample-sample’ for each file, while the second column indicates its corresponding relative file path (relative to where qiime commands are called). The gnps-clustering and the mzmine2-clustering tools are using both the same manifest file.
+The manifest file specifies the location of the files that will be processed by the metabolomics plugin. It is a .CSV (comma separated value) formatted table that contains two columns. The first column indicates the ‘sample_name’ for each file, while the second column indicates its corresponding relative file path (relative to where qiime commands are called). The gnps-clustering and the mzmine2-clustering tools are using both the same manifest file.
 
-View of the manifest file (.CSV format). The first column indicates the ‘sample-same for each file, while the second column indicates its corresponding relative file path. The example file can be [downloaded here](https://github.com/mwang87/q2_metabolomics/raw/master/q2_metabolomics/tests/data/manifest.tsv).
+View of the manifest file (.CSV format). The first column indicates the sample_name for each file, while the second column indicates its corresponding relative file path. The example file can be [downloaded here](https://github.com/mwang87/q2_metabolomics/raw/master/q2_metabolomics/tests/data/manifest.tsv).
 
-| sample-name        | filepaths           |
+| sample_name        | filepaths           |
 | ------------- |:-------------:|
 | sample1      | data/121114_nanoDESI_polar_ISP2_control_DD_MS2.mzXML |
 | sample2      | data/121119_VM37_FT-IT.mzXML |
@@ -267,7 +274,7 @@ qiime diversity pcoa \
  --output-dir pcoa_canberra_qiime2
 ```
 
-To create an interactive ordination plot of the above created PCoA with integrated sample metadata use the qiime emperor plot function. Make sure that the ‘sample-id’s provided in the metadata file correspond to the sample-ids in the canberra distance_matrix.qza file:
+To create an interactive ordination plot of the above created PCoA with integrated sample metadata use the qiime emperor plot function. Make sure that the ‘sample_name’s provided in the metadata file correspond to the sample_name in the canberra distance_matrix.qza file:
 
 ```
 qiime emperor plot \
@@ -372,7 +379,7 @@ qiime diversity pcoa \
   --output-dir pcoa_canberra_qiime2
 ```
 
-To create an interactive ordination plot of the above created PCoA with integrated sample metadata use the qiime emperor plot function. Make sure that the ‘sample-id’s provided in the metadata file correspond to the sample-ids in the canberra distance_matrix.qza file:
+To create an interactive ordination plot of the above created PCoA with integrated sample metadata use the qiime emperor plot function. Make sure that the ‘sample_name’s provided in the metadata file correspond to the sample_name in the canberra distance_matrix.qza file:
 
 ```
 qiime emperor plot \
@@ -541,7 +548,7 @@ qiime diversity pcoa \
   --output-dir pcoa_canberra_qiime2
 ```
 
-To create an interactive ordination plot of the above created PCoA with integrated sample metadata use the qiime emperor plot function. Make sure that the ‘sample-id’s provided in the metadata file correspond to the sample-ids in the canberra distance_matrix.qza file:
+To create an interactive ordination plot of the above created PCoA with integrated sample metadata use the qiime emperor plot function. Make sure that the ‘sample_name’s provided in the metadata file correspond to the sample_name in the canberra distance_matrix.qza file:
 
 ```
 qiime emperor plot \
@@ -642,7 +649,7 @@ qiime diversity pcoa \
 --output-dir pcoa_canberra_qiime2
 ```
 
-To create an interactive ordination plot of the above created PCoA with integrated sample metadata use the qiime emperor plot function. Make sure that the ‘sample-id’s provided in the metadata file correspond to the sample-ids in the canberra distance_matrix.qza file:
+To create an interactive ordination plot of the above created PCoA with integrated sample metadata use the qiime emperor plot function. Make sure that the ‘sample_name’s provided in the metadata file correspond to the sample_name in the canberra distance_matrix.qza file:
 
 ```
 qiime emperor plot \

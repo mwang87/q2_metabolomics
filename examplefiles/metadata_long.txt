@@ -1,4 +1,4 @@
-sample-id	filepath	description	age	age_units	sample_set	fermented	empo_1	empo_2	empo_3
+sample_name	filepath	description	age	age_units	sample_set	fermented	empo_1	empo_2	empo_3
 G95952	G95952_BA6_01_31659.mzXML	milk with yogurt culture	0	hrs	A	yes	host associated	animal	animal secretion
 G95982	G95982_repeat_RB8_01_31543.mzXML	milk with yogurt culture	11	hrs	A	yes	host associated	animal	animal secretion
 G96107	G96107_repeat_RD4_01_31616.mzXML	milk with yogurt culture	24	hrs	A	yes	host associated	animal	animal secretion

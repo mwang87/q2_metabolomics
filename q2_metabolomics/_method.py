@@ -234,7 +234,7 @@ def import_mzmine2(manifest: str, quantificationtable: str) -> biom.Table:
 
             for header in row:
                 if header.find("Peak area") != -1:
-                    filepath = os.path.basename(header.split(" ")[0])
+                    filepath = os.path.basename(header.replace("Peak area", "").rstrip())
                     sid = sid_mapping[filepath]
                     output_dict[sid] = row[header]
 

@@ -26,7 +26,7 @@ qiime
 
 If Qiime2 was successfully installed, options will appear.
 
-To install the q2_metabolomics plugin, you have two options
+To install the q2_metabolomics plugin, you have two options, though the conda installation is not current supported. 
 
 ```
 conda install -c mwang87 q2-metabolomics
